@@ -8,11 +8,16 @@ namespace SpaceParkAPI.Models
 {
     public class SpaceParkContext : DbContext
     {
+        public DbSet<Parking> Parkings { get; set; }
+        public DbSet<SpacePort> SpacePorts { get; set; }
         public SpaceParkContext(DbContextOptions<SpaceParkContext> options) : base(options)
         {
         }
-
-        public DbSet<Parking> Parkings { get; set; }
-        public DbSet<SpacePort> SpacePorts { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Parking>()
+                .Property(x => x.StartTime)
+                .HasDefaultValueSql("getdate()");
+        }
     }
 }

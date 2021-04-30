@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace SpaceParkAPI.Models
         public string Traveller { get; set; }
         [Required]
         public string StarShip { get; set; }
+        [Column(TypeName = "decimal(18,4)")]
         public decimal? TotalSum { get; set; }
         public SpacePort SpacePort { get; set; }
     }

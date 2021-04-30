@@ -16,7 +16,7 @@ services:
       SA_PASSWORD: "PEWpew1!"
       MSSQL_PID: Express
     ports:
-      - "1433:1433"
+      - "41433:1433"
     volumes:
       - spaceparkapi-data:/var/opt/mysql
 
