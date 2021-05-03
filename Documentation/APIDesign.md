@@ -1,15 +1,25 @@
 # API Design
 
 ## Endpoints
+- **/parkings/**
+    - Methods:
+        - GET
+        - PUT
+        - POST
 
-### /parkings/
+### **/spaceports/**
+
+#### Methods
+    - POST
+
+### */parkings/
 
 #### Methods
     - GET
     - PUT
     - POST
 
-### /spaceports/
+### **/spaceports/**
 
 #### Methods
     - POST
