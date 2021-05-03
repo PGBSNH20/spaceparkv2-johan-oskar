@@ -80,7 +80,7 @@ namespace SpaceParkAPI.Controllers
             _context.Parkings.Add(parking);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetParking", new { id = parking.ID }, parking);
+            return CreatedAtAction(nameof(GetParking), new { id = parking.ID }, parking);
         }
 
         // DELETE: api/Parkings/5
