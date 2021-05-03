@@ -1,0 +1,19 @@
+GET https://localhost:5001/api/Parkings
+
+###
+
+GET https://localhost:5001/api/SpacePorts
+
+###
+
+GET https://localhost:5001/api/SpacePorts/1
+
+###
+
+POST https://localhost:5001/api/SpacePorts
+Content-Type: application/json
+
+{
+    "PlanetName":"Tatooine",
+    "Name":"TatooinePort"
+}
