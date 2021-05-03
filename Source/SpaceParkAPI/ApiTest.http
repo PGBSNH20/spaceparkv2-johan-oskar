@@ -17,3 +17,46 @@ Content-Type: application/json
     "PlanetName":"Tatooine",
     "Name":"TatooinePort"
 }
+
+###
+
+PUT https://localhost:5001/api/SpacePorts/2
+Content-Type: application/json
+
+{
+    "Id":2,
+    "PlanetName":"Naboo",
+    "Name":"NabooPort"
+}
+
+###
+
+POST https://localhost:5001/api/Parkings
+Content-Type: application/json
+
+{
+    "Traveller":"Luke",
+    "StarShip":"X-Wing",
+    "SpacePort":1
+}
+
+###
+
+
+POST https://localhost:5001/api/Parkings
+Content-Type: application/json
+
+{
+    "Traveller":"Luke",
+    "StarShip":"X-Wing",
+    "SpacePort":
+    {
+    "planetName": "Tatooine",
+    "name": "TatooinePort"
+    }
+}
+
+###
+
+
+DELETE https://localhost:5001/api/Parkings/1
