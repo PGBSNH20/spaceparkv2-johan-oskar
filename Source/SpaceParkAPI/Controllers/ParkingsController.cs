@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SpaceParkAPI.APIModels;
 using SpaceParkAPI.Models;
 
 namespace SpaceParkAPI.Controllers
@@ -75,11 +76,25 @@ namespace SpaceParkAPI.Controllers
         // POST: api/Parkings
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Parking>> PostParking(Parking parking)
+        public async Task<ActionResult<Parking>> PostParking(PostParking postParking)
+        //public async Task<ActionResult<Parking>> PostParking(Parking parking)
         {
-            _context.Parkings.Add(parking);
+            var newParking = new Parking
+            {
+                Traveller = postParking.Traveller,
+                StarShip = postParking.StarShip,
+                SpacePort = _context.SpacePorts.Single(s => s.ID == postParking.SpacePortId)
+            };
+
+            _context.Parkings.Add(newParking);
+
+            //if (_context.SpacePorts.Single(s => parking.SpacePort != null && s.ID == parking.SpacePort.ID) != null) {
+            //    _context.Parkings.Add(parking);
+
+            //}
             await _context.SaveChangesAsync();
 
+            //return CreatedAtAction(nameof(GetParking), new { id = newParking.ID }, newParking);
             return CreatedAtAction(nameof(GetParking), new { id = parking.ID }, parking);
         }
 
