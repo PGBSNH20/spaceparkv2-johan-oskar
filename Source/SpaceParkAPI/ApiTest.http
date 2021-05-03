@@ -35,9 +35,9 @@ POST https://localhost:5001/api/Parkings
 Content-Type: application/json
 
 {
-    "Traveller":"Luke",
-    "StarShip":"X-Wing",
-    "SpacePort":1
+    "Traveller":"Luke2",
+    "StarShip":"X-Wing2",
+    "SpacePortId":1
 }
 
 ###
@@ -51,8 +51,8 @@ Content-Type: application/json
     "StarShip":"X-Wing",
     "SpacePort":
     {
-    "planetName": "Tatooine",
-    "name": "TatooinePort"
+        "planetName": "Tatooine",
+        "name": "TatooinePort"
     }
 }
 
