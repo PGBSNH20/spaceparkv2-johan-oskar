@@ -12,7 +12,7 @@ namespace SpaceParkConsole.SpacePortApi
 {
     public class Requests
     {
-        private const string _baseURL = "https://localhost:5001/api/";
+        private const string _baseURL = "https://localhost:44360/api";
 
         // Generic method for fetching data from the API (SpacePark API)
         public static async Task<List<T>> Get<T>(string requestUrl)
@@ -28,7 +28,7 @@ namespace SpaceParkConsole.SpacePortApi
         {
             var client = new RestClient(_baseURL);
 
-            var request = new RestRequest("Parking/");
+            var request = new RestRequest("/Parkings/");
 
             // Json to post.
             var postParking = new PostParking()
@@ -39,7 +39,6 @@ namespace SpaceParkConsole.SpacePortApi
             };
 
             request.AddJsonBody(postParking);
-
             var response = await client.PostAsync<PostParking>(request);
 
             //string jsonParking = (new JsonSerializer()).Serialize(postParking);
