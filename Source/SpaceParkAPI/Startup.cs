@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SpaceParkAPI.Models;
+using SpaceParkAPI.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,8 @@ namespace SpaceParkAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SpaceParkAPI", Version = "v1" });
             });
+            services.AddSingleton<IParkingsRepository, ParkingsRepository>();
+            //services.AddSingleton<ISpacePortRepository, SpacePortRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

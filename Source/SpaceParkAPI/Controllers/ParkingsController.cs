@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SpaceParkAPI.APIModels;
 using SpaceParkAPI.Models;
+using SpaceParkAPI.Repository;
 
 namespace SpaceParkAPI.Controllers
 {
@@ -15,17 +16,20 @@ namespace SpaceParkAPI.Controllers
     public class ParkingsController : ControllerBase
     {
         private readonly SpaceParkContext _context;
+        private readonly IParkingsRepository _parkingsRepository;
+        //private readonly ILogger _logger; // från Stephans genomgång 2021-04-30
 
-        public ParkingsController(SpaceParkContext context)
+        public ParkingsController(SpaceParkContext context, IParkingsRepository parkingsRepository)
         {
             _context = context;
+            _parkingsRepository = parkingsRepository;
         }
 
         // GET: api/Parkings
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Parking>>> GetParkings()
         {
-            return await _context.Parkings.ToListAsync();
+            return (await _parkingsRepository.GetAllParkings(_context)).ToList();
         }
 
         // GET: api/Parkings/5
@@ -94,8 +98,8 @@ namespace SpaceParkAPI.Controllers
             //}
             await _context.SaveChangesAsync();
 
-            //return CreatedAtAction(nameof(GetParking), new { id = newParking.ID }, newParking);
-            return CreatedAtAction(nameof(GetParking), new { id = parking.ID }, parking);
+            return CreatedAtAction(nameof(GetParking), new { id = newParking.ID }, newParking);
+            //return CreatedAtAction(nameof(GetParking), new { id = parking.ID }, parking);
         }
 
         // DELETE: api/Parkings/5
