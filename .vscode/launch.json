@@ -27,10 +27,31 @@
             }
         },
         {
+            "name": "SpaceParkConsole",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build SpaceParkConsole",
+            "program": "${workspaceFolder}/Source/SpaceParkConsole/bin/Debug/net5.0/SpaceParkConsole.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Source/SpaceParkConsole",
+            "stopAtEntry": false,
+            "console": "externalTerminal"
+        },
+        {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickProcess}"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "api/console",
+            "configurations": [
+                ".NET Core Launch (web)",
+                "SpaceParkConsole"
+            ],
+            "stopAll": true
         }
     ]
 }
