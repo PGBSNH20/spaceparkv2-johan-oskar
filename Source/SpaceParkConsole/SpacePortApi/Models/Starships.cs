@@ -1,4 +1,4 @@
-﻿namespace SpaceParkAPI.SWAPI.Models
+﻿namespace SpaceParkConsole.SpacePortApi.Models
 {
     public class Starships
     {

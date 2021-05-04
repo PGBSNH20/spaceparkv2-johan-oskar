@@ -1,7 +1,7 @@
-﻿using SpaceInvaders.Objects;
+﻿using SpaceParkAPI.SWAPI.Models;
 using System.Collections.Generic;
 
-namespace SpaceInvaders.API
+namespace SpaceParkAPI.SWAPI
 {
     public class APIResponse<T>
     {

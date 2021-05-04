@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SpaceParkAPI.SWAPI.Models
+namespace SpaceParkConsole.SpacePortApi.Models
 {
     public class Person
     {

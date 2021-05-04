@@ -1,10 +1,10 @@
 ﻿using RestSharp;
-using SpaceInvaders.Objects;
+using SpaceParkAPI.SWAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SpaceInvaders.API
+namespace SpaceParkAPI.SWAPI
 {
     public static class Fetch
     {
