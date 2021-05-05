@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RestSharp;
+﻿using RestSharp;
 using SpaceParkConsole.SpacePortApi.Models;
-//using RestSharp.Serialization.Json;
-//using System.Net;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SpaceParkConsole.SpacePortApi
 {
@@ -18,7 +14,7 @@ namespace SpaceParkConsole.SpacePortApi
         public static async Task<List<T>> Get<T>(string requestUrl)
         {
             var client = new RestClient(_baseURL);
-            
+
             var request = new RestRequest(requestUrl, DataFormat.Json);
 
             return await client.GetAsync<List<T>>(request);
@@ -26,11 +22,6 @@ namespace SpaceParkConsole.SpacePortApi
 
         public static async Task PostParking(string personName, string starshipsname, int spacePortId)
         {
-            var client = new RestClient(_baseURL);
-
-            var request = new RestRequest("/Parkings/");
-
-            // Json to post.
             var postParking = new PostParking()
             {
                 Traveller = personName,
@@ -38,34 +29,21 @@ namespace SpaceParkConsole.SpacePortApi
                 SpacePortId = spacePortId
             };
 
+            var client = new RestClient(_baseURL);
+            var request = new RestRequest("/Parkings/");
             request.AddJsonBody(postParking);
-            var response = await client.PostAsync<PostParking>(request);
 
-            //string jsonParking = (new JsonSerializer()).Serialize(postParking);
+            try
+            {
+                await client.PostAsync<PostParking>(request);
 
-            //request.AddParameter("application/json; charset=utf-8", jsonParking, ParameterType.RequestBody);
-            //request.RequestFormat = DataFormat.Json;
-
-            //try
-            //{
-            //    client.ExecuteAsync(request, response =>
-            //    {
-            //        if (response.StatusCode == HttpStatusCode.OK)
-            //        {
-            //            // OK
-            //        }
-            //        else
-            //        {
-            //            // NOK
-            //        }
-            //    });
-            //}
-            //catch (Exception error)
-            //{
-            //    // Log
-            //}
+            }
+            catch (Exception e)
+            {
+                // log the error?
+                // do error handling stuff?
+                throw; // remove?
+            }
         }
-
-
     }
 }
