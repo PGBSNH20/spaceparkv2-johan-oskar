@@ -16,12 +16,17 @@ apikey: secret1234
 
 ###
 
-GET https://localhost:44360/api/People/1
+GET https://localhost:44360/api/People
 apikey: secret1234
 
 ###
 
 GET https://localhost:44360/api/Starships
+apikey: secret1234
+
+###
+
+GET https://localhost:44360/api/Starships/3
 apikey: secret1234
 
 ###

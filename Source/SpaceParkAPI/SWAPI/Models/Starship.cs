@@ -1,6 +1,6 @@
 ﻿namespace SpaceParkAPI.SWAPI.Models
 {
-    public class Starships
+    public class Starship
     {
         public string Name { get; set; }
         public string Length { get; set; }
