@@ -19,7 +19,7 @@ namespace SpaceParkConsole
 
         static async Task Main(string[] args)
         {
-            await Requests.PostParking("newLuke", "newX-Wing", 1);
+            await Requests.PostParking($"Luke Skywalker {DateTime.Now}", $"X-Wing {DateTime.Now}", 1);
 
 
 
