@@ -1,26 +1,26 @@
-GET https://localhost:5001/api/Parkings
+GET https://localhost:44360/api/Parkings
 
 ###
 
-GET https://localhost:5001/api/SpacePorts
+GET https://localhost:44360/api/SpacePorts
 
 ###
 
-GET https://localhost:5001/api/SpacePorts/1
+GET https://localhost:44360/api/SpacePorts/1
 
 ###
 
-POST https://localhost:5001/api/SpacePorts
+POST https://localhost:44360/api/SpacePorts
 Content-Type: application/json
 
 {
-    "PlanetName":"Tatooine",
-    "Name":"TatooinePort"
+    "PlanetName":"Tatooine3",
+    "Name":"TatooinePort3"
 }
 
 ###
 
-PUT https://localhost:5001/api/SpacePorts/2
+PUT https://localhost:44360/api/SpacePorts/2
 Content-Type: application/json
 
 {
@@ -31,7 +31,7 @@ Content-Type: application/json
 
 ###
 
-POST https://localhost:5001/api/Parkings
+POST https://localhost:44360/api/Parkings
 Content-Type: application/json
 
 {
@@ -43,7 +43,7 @@ Content-Type: application/json
 ###
 
 
-POST https://localhost:5001/api/Parkings
+POST https://localhost:44360/api/Parkings
 Content-Type: application/json
 
 {
@@ -59,4 +59,4 @@ Content-Type: application/json
 ###
 
 
-DELETE https://localhost:5001/api/Parkings/1
+DELETE https://localhost:44360/api/Parkings/1
