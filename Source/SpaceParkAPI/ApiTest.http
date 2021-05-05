@@ -11,6 +11,21 @@ apikey: secret1234
 
 ###
 
+GET https://localhost:44360/api/People
+apikey: secret1234
+
+###
+
+GET https://localhost:44360/api/People/1
+apikey: secret1234
+
+###
+
+GET https://localhost:44360/api/Starships
+apikey: secret1234
+
+###
+
 POST https://localhost:44360/api/SpacePorts
 Content-Type: application/json
 apikey: secret1234

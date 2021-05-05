@@ -35,7 +35,7 @@ namespace SpaceParkAPI.SWAPI
         }
 
         //Fetch people from API
-        public static Task<List<Person>> People(string input)
+        public static Task<List<Person>> People(int? input = null)
         {
             string requestUrl = RequestURLs.People;
             if (input != null)
