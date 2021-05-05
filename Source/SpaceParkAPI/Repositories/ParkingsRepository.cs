@@ -4,7 +4,7 @@ using SpaceParkAPI.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SpaceParkAPI.Repository
+namespace SpaceParkAPI.Repositories
 {
     public class ParkingsRepository : IParkingsRepository
     {

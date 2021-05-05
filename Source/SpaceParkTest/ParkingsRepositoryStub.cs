@@ -1,5 +1,5 @@
 ﻿using SpaceParkAPI.Models;
-using SpaceParkAPI.Repository;
+using SpaceParkAPI.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

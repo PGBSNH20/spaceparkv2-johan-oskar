@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SpaceParkAPI.APIModels;
 using SpaceParkAPI.Models;
-using SpaceParkAPI.Repository;
+using SpaceParkAPI.Repositories;
 
 namespace SpaceParkAPI.Controllers
 {
@@ -83,11 +83,18 @@ namespace SpaceParkAPI.Controllers
         public async Task<ActionResult<Parking>> PostParking(PostParking postParking)
         //public async Task<ActionResult<Parking>> PostParking(Parking parking)
         {
+            var spacePort = await _context.SpacePorts.SingleOrDefaultAsync(s => s.ID == postParking.SpacePortId);
+
+            if (spacePort == null)
+            {
+                return NotFound();
+            }
+
             var newParking = new Parking
             {
                 Traveller = postParking.Traveller,
                 StarShip = postParking.StarShip,
-                SpacePort = _context.SpacePorts.Single(s => s.ID == postParking.SpacePortId)
+                SpacePort = spacePort
             };
 
             _context.Parkings.Add(newParking);

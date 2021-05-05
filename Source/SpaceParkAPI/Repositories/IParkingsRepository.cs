@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SpaceParkAPI.Repository
+namespace SpaceParkAPI.Repositories
 {
     public interface IParkingsRepository
     {
