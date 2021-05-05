@@ -7,15 +7,17 @@ GET https://localhost:44360/api/SpacePorts
 ###
 
 GET https://localhost:44360/api/SpacePorts/1
+apikey: secret1234
 
 ###
 
 POST https://localhost:44360/api/SpacePorts
 Content-Type: application/json
+apikey: secret1234
 
 {
-    "PlanetName":"Tatooine3",
-    "Name":"TatooinePort3"
+    "PlanetName":"Tatooine500",
+    "Name":"TatooinePort500"
 }
 
 ###
@@ -33,10 +35,11 @@ Content-Type: application/json
 
 POST https://localhost:44360/api/Parkings
 Content-Type: application/json
+apikey: secret1234
 
 {
-    "Traveller":"Luke2",
-    "StarShip":"X-Wing2",
+    "Traveller":"Luke5",
+    "StarShip":"X-Wing5",
     "SpacePortId":1
 }
 

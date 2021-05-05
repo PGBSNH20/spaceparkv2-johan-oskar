@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace SpaceParkAPI
 {
@@ -53,8 +54,19 @@ namespace SpaceParkAPI
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Headers.ContainsKey("apikey") && context.Request.Headers["apikey"].ToString() == "secret1234")
+                {
+                    await next();
+                }
+                else
+                {
+                    context.Response.StatusCode = 401;
+                }
+            });
 
+            app.UseRouting();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
