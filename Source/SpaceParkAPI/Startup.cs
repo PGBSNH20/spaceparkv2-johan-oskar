@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -5,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-//using SpaceParkAPI.Middleware;
+using SpaceParkAPI.Middleware;
 using SpaceParkAPI.Models;
 using SpaceParkAPI.Repositories;
 
@@ -23,7 +24,6 @@ namespace SpaceParkAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
             services.AddDbContext<SpaceParkContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -46,23 +46,22 @@ namespace SpaceParkAPI
 
             app.UseHttpsRedirection();
 
-            app.Use(async (context, next) =>
-            {
-                if (context.Request.Headers.ContainsKey("apikey") && context.Request.Headers["apikey"].ToString() == "secret1234")
-                {
-                    await next();
-                }
-                else
-                {
-                    context.Response.StatusCode = 401;
-                }
+            //app.Use(async (context, next) =>
+            //{
+                //if (context.Request.Headers.ContainsKey("apikey") && context.Request.Headers["apikey"].ToString() == "secret1234")
+                //{
+                //    await next();
+                //}
+                //else
+                //{
+                //    context.Response.StatusCode = 401;
+                //}
+            //});
 
-                //new ApiKeyMiddleware(context, next);
-            });
+            app.UseApiKeyMiddleware();
 
             app.UseRouting();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
