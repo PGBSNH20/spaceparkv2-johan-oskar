@@ -13,6 +13,6 @@ namespace SpaceParkAPI.APIModels
         [Required]
         public string StarShip { get; set; }
         [Required]
-        public int SpacePortId { get; set; }
+        public int SpaceportId { get; set; }
     }
 }

@@ -83,9 +83,9 @@ namespace SpaceParkAPI.Controllers
         public async Task<ActionResult<Parking>> PostParking(PostParking postParking)
         //public async Task<ActionResult<Parking>> PostParking(Parking parking)
         {
-            var spacePort = await _context.SpacePorts.SingleOrDefaultAsync(s => s.ID == postParking.SpacePortId);
+            var spaceport = await _context.Spaceports.SingleOrDefaultAsync(s => s.ID == postParking.SpaceportId);
 
-            if (spacePort == null)
+            if (spaceport == null)
             {
                 return NotFound();
             }
@@ -94,12 +94,12 @@ namespace SpaceParkAPI.Controllers
             {
                 Traveller = postParking.Traveller,
                 StarShip = postParking.StarShip,
-                SpacePort = spacePort
+                Spaceport = spaceport
             };
 
             _context.Parkings.Add(newParking);
 
-            //if (_context.SpacePorts.Single(s => parking.SpacePort != null && s.ID == parking.SpacePort.ID) != null) {
+            //if (_context.Spaceports.Single(s => parking.Spaceport != null && s.ID == parking.Spaceport.ID) != null) {
             //    _context.Parkings.Add(parking);
 
             //}

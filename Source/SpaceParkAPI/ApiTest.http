@@ -2,11 +2,11 @@ GET https://localhost:44360/api/Parkings
 
 ###
 
-GET https://localhost:44360/api/SpacePorts
+GET https://localhost:44360/api/Spaceports
 
 ###
 
-GET https://localhost:44360/api/SpacePorts/1
+GET https://localhost:44360/api/Spaceports/1
 apikey: secret1234
 
 ###
@@ -31,7 +31,7 @@ apikey: secret1234
 
 ###
 
-POST https://localhost:44360/api/SpacePorts
+POST https://localhost:44360/api/Spaceports
 Content-Type: application/json
 apikey: secret1234
 
@@ -42,7 +42,7 @@ apikey: secret1234
 
 ###
 
-PUT https://localhost:44360/api/SpacePorts/2
+PUT https://localhost:44360/api/Spaceports/2
 Content-Type: application/json
 
 {
@@ -60,7 +60,7 @@ apikey: secret1234
 {
     "Traveller":"Luke5",
     "StarShip":"X-Wing5",
-    "SpacePortId":1
+    "SpaceportId":1
 }
 
 ###
@@ -72,7 +72,7 @@ Content-Type: application/json
 {
     "Traveller":"Luke",
     "StarShip":"X-Wing",
-    "SpacePort":
+    "Spaceport":
     {
         "planetName": "Tatooine",
         "name": "TatooinePort"

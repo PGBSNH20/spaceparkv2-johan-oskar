@@ -20,6 +20,6 @@ namespace SpaceParkAPI.Models
         public string StarShip { get; set; }
         [Column(TypeName = "decimal(18,4)")]
         public decimal? TotalSum { get; set; }
-        public SpacePort SpacePort { get; set; }
+        public Spaceport Spaceport { get; set; }
     }
 }

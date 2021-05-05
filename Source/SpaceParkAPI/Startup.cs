@@ -1,20 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+//using SpaceParkAPI.Middleware;
 using SpaceParkAPI.Models;
 using SpaceParkAPI.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net.Http;
 
 namespace SpaceParkAPI
 {
@@ -30,7 +23,6 @@ namespace SpaceParkAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
             //services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
             services.AddDbContext<SpaceParkContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
@@ -39,7 +31,7 @@ namespace SpaceParkAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SpaceParkAPI", Version = "v1" });
             });
             services.AddSingleton<IParkingsRepository, ParkingsRepository>();
-            //services.AddSingleton<ISpacePortRepository, SpacePortRepository>();
+            //services.AddSingleton<ISpaceportRepository, SpaceportRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +56,8 @@ namespace SpaceParkAPI
                 {
                     context.Response.StatusCode = 401;
                 }
+
+                //new ApiKeyMiddleware(context, next);
             });
 
             app.UseRouting();

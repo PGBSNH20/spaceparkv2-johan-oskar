@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using RestSharp;
-using SpaceParkConsole.SpacePortApi;
+using SpaceParkConsole.SpaceportApi;
 
 namespace SpaceParkConsole
 {

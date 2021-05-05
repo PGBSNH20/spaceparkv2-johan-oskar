@@ -9,7 +9,7 @@ namespace SpaceParkAPI.Models
     public class SpaceParkContext : DbContext
     {
         public DbSet<Parking> Parkings { get; set; }
-        public DbSet<SpacePort> SpacePorts { get; set; }
+        public DbSet<Spaceport> Spaceports { get; set; }
         public SpaceParkContext(DbContextOptions<SpaceParkContext> options) : base(options)
         {
         }

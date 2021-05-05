@@ -11,47 +11,47 @@ namespace SpaceParkAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SpacePortsController : ControllerBase
+    public class SpaceportsController : ControllerBase
     {
         private readonly SpaceParkContext _context;
 
-        public SpacePortsController(SpaceParkContext context)
+        public SpaceportsController(SpaceParkContext context)
         {
             _context = context;
         }
 
-        // GET: api/SpacePorts
+        // GET: api/Spaceports
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SpacePort>>> GetSpacePorts()
+        public async Task<ActionResult<IEnumerable<Spaceport>>> GetSpaceports()
         {
-            return await _context.SpacePorts.ToListAsync();
+            return await _context.Spaceports.ToListAsync();
         }
 
-        // GET: api/SpacePorts/5
+        // GET: api/Spaceports/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<SpacePort>> GetSpacePort(int id)
+        public async Task<ActionResult<Spaceport>> GetSpaceport(int id)
         {
-            var spacePort = await _context.SpacePorts.FindAsync(id);
+            var spaceport = await _context.Spaceports.FindAsync(id);
 
-            if (spacePort == null)
+            if (spaceport == null)
             {
                 return NotFound();
             }
 
-            return spacePort;
+            return spaceport;
         }
 
-        // PUT: api/SpacePorts/5
+        // PUT: api/Spaceports/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSpacePort(int id, SpacePort spacePort)
+        public async Task<IActionResult> PutSpaceport(int id, Spaceport spaceport)
         {
-            if (id != spacePort.ID)
+            if (id != spaceport.ID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(spacePort).State = EntityState.Modified;
+            _context.Entry(spaceport).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace SpaceParkAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SpacePortExists(id))
+                if (!SpaceportExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace SpaceParkAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/SpacePorts
+        // POST: api/Spaceports
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<SpacePort>> PostSpacePort(SpacePort spacePort)
+        public async Task<ActionResult<Spaceport>> PostSpaceport(Spaceport spaceport)
         {
-            _context.SpacePorts.Add(spacePort);
+            _context.Spaceports.Add(spaceport);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetSpacePort), new { id = spacePort.ID }, spacePort);
+            return CreatedAtAction(nameof(GetSpaceport), new { id = spaceport.ID }, spaceport);
         }
 
-        // DELETE: api/SpacePorts/5
+        // DELETE: api/Spaceports/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSpacePort(int id)
+        public async Task<IActionResult> DeleteSpaceport(int id)
         {
-            var spacePort = await _context.SpacePorts.FindAsync(id);
-            if (spacePort == null)
+            var spaceport = await _context.Spaceports.FindAsync(id);
+            if (spaceport == null)
             {
                 return NotFound();
             }
 
-            _context.SpacePorts.Remove(spacePort);
+            _context.Spaceports.Remove(spaceport);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool SpacePortExists(int id)
+        private bool SpaceportExists(int id)
         {
-            return _context.SpacePorts.Any(e => e.ID == id);
+            return _context.Spaceports.Any(e => e.ID == id);
         }
     }
 }
