@@ -18,20 +18,28 @@ namespace SpaceParkAPI.SWAPI
         // Generic method for fetching data from the API (swapi.com)
         public static async Task<List<T>> Data<T>(string requestUrl)
         {
-            var client = new RestClient(_baseURL);
-            APIResponse<T> response;
-            List<T> persons = new List<T>();
-
-            while (requestUrl != null)
+            try
             {
-                string resource = requestUrl.Substring(_baseURL.Length);
-                var request = new RestRequest(resource, DataFormat.Json);
-                response = await client.GetAsync<APIResponse<T>>(request);
+                var client = new RestClient(_baseURL);
+                APIResponse<T> response;
+                List<T> result = new List<T>();
 
-                persons.AddRange(response.Results);
-                requestUrl = response.Next;
+                while (requestUrl != null)
+                {
+                    string resource = requestUrl.Substring(_baseURL.Length);
+                    var request = new RestRequest(resource, DataFormat.Json);
+                    response = await client.GetAsync<APIResponse<T>>(request);
+
+                    result.AddRange(response.Results);
+                    requestUrl = response.Next;
+                }
+                return result;
             }
-            return persons;
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
         }
 
         //Fetch people from API
