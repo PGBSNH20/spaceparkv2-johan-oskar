@@ -28,9 +28,9 @@ namespace SpaceParkAPI.SWAPI.Controllers
         /// <param name="id">Id of person in the Star Wars API</param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public ActionResult<IEnumerable<Person>> Get(int id)
+        public ActionResult<Person> Get(int id)
         {
-            var person = Fetch.People(id).Result;
+            var person = Fetch.People(id).Result.FirstOrDefault();
 
             if (person == null)
             {
