@@ -33,6 +33,7 @@ namespace SpaceParkAPI.SWAPI
                     result.AddRange(response.Results);
                     requestUrl = response.Next;
                 }
+
                 return result;
             }
             catch (Exception e)

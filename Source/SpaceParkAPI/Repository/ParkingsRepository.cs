@@ -10,7 +10,7 @@ namespace SpaceParkAPI.Repository
     {
         public async Task<IEnumerable<Parking>> GetAllParkings(SpaceParkContext context)
         {
-            return await context.Parkings.ToListAsync();
+            return await context.Parkings.Include(parking => parking.SpacePort).ToListAsync();
         }
     }
 }
