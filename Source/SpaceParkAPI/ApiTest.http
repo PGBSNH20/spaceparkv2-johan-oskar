@@ -1,55 +1,10 @@
+##############################
+########## Parkings ##########
+##############################
+
+########## GET ##########
+
 GET https://localhost:44360/api/Parkings
-
-###
-
-GET https://localhost:44360/api/SpacePorts
-
-###
-
-GET https://localhost:44360/api/SpacePorts/1
-apikey: secret1234
-
-###
-
-GET https://localhost:44360/api/People
-apikey: secret1234
-
-###
-
-GET https://localhost:44360/api/People
-apikey: secret1234
-
-###
-
-GET https://localhost:44360/api/Starships
-apikey: secret1234
-
-###
-
-GET https://localhost:44360/api/Starships/3
-apikey: secret1234
-
-###
-
-POST https://localhost:44360/api/SpacePorts
-Content-Type: application/json
-apikey: secret1234
-
-{
-    "PlanetName":"Tatooine500",
-    "Name":"TatooinePort500"
-}
-
-###
-
-PUT https://localhost:44360/api/SpacePorts/2
-Content-Type: application/json
-
-{
-    "Id":2,
-    "PlanetName":"Naboo",
-    "Name":"NabooPort"
-}
 
 ###
 
@@ -60,11 +15,10 @@ apikey: secret1234
 {
     "Traveller":"Luke5",
     "StarShip":"X-Wing5",
-    "SpacePortId":1
+    "SpaceportId":1
 }
 
 ###
-
 
 POST https://localhost:44360/api/Parkings
 Content-Type: application/json
@@ -72,7 +26,7 @@ Content-Type: application/json
 {
     "Traveller":"Luke",
     "StarShip":"X-Wing",
-    "SpacePort":
+    "Spaceport":
     {
         "planetName": "Tatooine",
         "name": "TatooinePort"
@@ -81,5 +35,71 @@ Content-Type: application/json
 
 ###
 
-
 DELETE https://localhost:44360/api/Parkings/1
+
+################################
+########## Spaceports ##########
+################################
+
+########## GET ##########
+
+GET https://localhost:44360/api/Spaceports
+apikey: apikey1234_visitor
+# apikey: apikey1234_admin
+
+###
+
+GET https://localhost:44360/api/Spaceports/1
+apikey: secret1234
+
+########## POST ##########
+
+POST https://localhost:44360/api/Spaceports
+Content-Type: application/json
+# apikey: secret1234
+# apikey: apikey1234_visitor
+apikey: apikey1234_admin
+
+{
+    "PlanetName":"Tatooine50055",
+    "Name":"TatooinePort50055"
+}
+
+########## PUT ##########
+
+PUT https://localhost:44360/api/Spaceports/2
+Content-Type: application/json
+
+{
+    "Id":2,
+    "PlanetName":"Naboo",
+    "Name":"NabooPort"
+}
+
+############################
+########## People ##########
+############################
+
+########## GET ##########
+
+GET https://localhost:44360/api/People
+apikey: apikey1234_visitor
+
+###
+
+GET https://localhost:44360/api/People
+apikey: secret1234
+
+###############################
+########## Starships ##########
+###############################
+
+########## GET ##########
+
+GET https://localhost:44360/api/Starships
+apikey: secret1234
+
+###
+
+GET https://localhost:44360/api/Starships/3
+apikey: secret1234

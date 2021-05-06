@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SpaceParkConsole.SpacePortApi.Models
+namespace SpaceParkConsole.SpaceportApi.Models
 {
     public class PostParking
     {
@@ -13,6 +13,6 @@ namespace SpaceParkConsole.SpacePortApi.Models
         [Required]
         public string StarShip { get; set; }
         [Required]
-        public int SpacePortId { get; set; }
+        public int SpaceportId { get; set; }
     }
 }

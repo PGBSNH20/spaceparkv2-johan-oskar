@@ -1,11 +1,11 @@
 version: '3.4'
 
 services:
-  spaceparkapi:
-    image: ${DOCKER_REGISTRY-}spaceparkapi
-    build:
-      context: .
-      dockerfile: SpaceParkAPI/Dockerfile
+  #spaceparkapi:
+    #image: ${DOCKER_REGISTRY-}spaceparkapi
+    #build:
+    #  context: .
+    #  dockerfile: SpaceParkAPI/Dockerfile
       
   mssql-server:
     image: mcr.microsoft.com/mssql/server:2019-latest
@@ -18,8 +18,8 @@ services:
     ports:
       - "41433:1433"
     volumes:
-      - spaceparkapi-data:/var/opt/mysql
+      - spaceparkapi-data:/var/opt/mssql
 
 volumes:
   spaceparkapi-data:
-    driver: local
+    #driver: local

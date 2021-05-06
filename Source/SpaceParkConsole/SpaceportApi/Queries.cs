@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SpaceParkConsole.SpacePortApi.Models;
+using SpaceParkConsole.SpaceportApi.Models;
 
-namespace SpaceParkConsole.SpacePortApi
+namespace SpaceParkConsole.SpaceportApi
 {
     //class Queries
     //{

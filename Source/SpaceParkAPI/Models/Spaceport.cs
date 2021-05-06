@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpaceParkAPI.Models
 {
-    public class SpacePort
+    public class Spaceport
     {
         [Key]
         public int ID { get; set; }

@@ -1,10 +1,10 @@
 ﻿using RestSharp;
-using SpaceParkConsole.SpacePortApi.Models;
+using SpaceParkConsole.SpaceportApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SpaceParkConsole.SpacePortApi
+namespace SpaceParkConsole.SpaceportApi
 {
     public class Requests
     {
@@ -20,13 +20,13 @@ namespace SpaceParkConsole.SpacePortApi
             return await client.GetAsync<List<T>>(request);
         }
 
-        public static async Task PostParking(string personName, string starshipsname, int spacePortId)
+        public static async Task PostParking(string personName, string starshipsname, int spaceportId)
         {
             var postParking = new PostParking()
             {
                 Traveller = personName,
                 StarShip = starshipsname,
-                SpacePortId = spacePortId
+                SpaceportId = spaceportId
             };
 
             var client = new RestClient(_baseURL);
