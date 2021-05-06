@@ -114,18 +114,19 @@ namespace SpaceParkTest
                 SpaceportId = spacePorts[0].ID
             };
 
-            IParkingsRepository testRepo = new TestParkingsRepository(null);
+            TestParkingsRepository testParkingsrepo = new TestParkingsRepository(null);
             ISpaceportsRepository testSpaceportsRepo = new TestSpaceportsRepository(spacePorts);
-            var parkingsController = new ParkingsController(null, testRepo, testSpaceportsRepo);
+            var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo);
 
             // Act
-            var newParkings = parkingsController.PostParking(postParking).Result.Value;
+            //var newParkings = parkingsController.PostParking(postParking).Result.Value;
+            var newParkings = parkingsController.PostParking(postParking);
 
             // Assert
-            Assert.Equal(postParking.Traveller, newParkings.Traveller);
-            Assert.Equal(postParking.StarShip, newParkings.StarShip);
-            Assert.Equal(postParking.SpaceportId, newParkings.Spaceport.ID);
-           
+            Assert.Equal(postParking.Traveller, testParkingsrepo.Parkings[0].Traveller);
+            Assert.Equal(postParking.StarShip, testParkingsrepo.Parkings[0].StarShip);
+            Assert.Equal(postParking.SpaceportId, testParkingsrepo.Parkings[0].Spaceport.ID);
+
         }
 
     }

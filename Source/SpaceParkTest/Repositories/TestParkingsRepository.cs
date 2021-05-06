@@ -15,7 +15,7 @@ namespace SpaceParkTest.Repositories
 
         public TestParkingsRepository(List<Parking> parkings)
         {
-            Parkings = parkings??new List<Parking>();
+            Parkings = parkings ?? new List<Parking>();
         }
 
         public Task<List<Parking>> GetAllParkings(SpaceParkContext context)
