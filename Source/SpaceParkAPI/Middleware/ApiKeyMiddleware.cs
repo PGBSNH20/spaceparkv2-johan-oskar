@@ -26,7 +26,6 @@ namespace SpaceParkAPI.Middleware
             string apiKeyAdmin;
             StringValues headerApiKey;
 
-
             if (ApiKeys.Count == 0
                 || !ApiKeys.TryGetValue("Visitor", out apiKeyVisitor)
                 || !ApiKeys.TryGetValue("Admin", out apiKeyAdmin))
@@ -48,7 +47,7 @@ namespace SpaceParkAPI.Middleware
 
             if (headerApiKey == apiKeyVisitor)
             {
-                if (context.Request.Path.StartsWithSegments("/api/spaceports") && context.Request.Method == "GET"
+                if ((context.Request.Path.StartsWithSegments("/api/spaceports") && context.Request.Method == "GET")
                     || context.Request.Path.StartsWithSegments("/api/parkings")
                     || context.Request.Path.StartsWithSegments("/api/people")
                     || context.Request.Path.StartsWithSegments("/api/starships"))

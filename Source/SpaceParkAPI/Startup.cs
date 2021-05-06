@@ -46,18 +46,6 @@ namespace SpaceParkAPI
 
             app.UseHttpsRedirection();
 
-            //app.Use(async (context, next) =>
-            //{
-                //if (context.Request.Headers.ContainsKey("apikey") && context.Request.Headers["apikey"].ToString() == "secret1234")
-                //{
-                //    await next();
-                //}
-                //else
-                //{
-                //    context.Response.StatusCode = 401;
-                //}
-            //});
-
             app.UseApiKeyMiddleware();
 
             app.UseRouting();

@@ -1,4 +1,6 @@
-* API key
+* [x] API key
+    * [] specific API key for user
+    * [] specific API key for admin
 * Finish `Parkings` Controller & API (finished?)
 * Finish `SpacePorts` Controller & API
 * SWAPI Controllers & API?
@@ -21,7 +23,8 @@
         * `GET /parkings` (get all)
         * `GET /parkings/2` (single)
         * `PUT /parkings/2` and/or `PATCH /parkings/2`
-    * SWAPI
+    * `People` (swapi)
+    * `Starships` (swapi)
 * Input Validation
 * Documentation
 * Presentation
