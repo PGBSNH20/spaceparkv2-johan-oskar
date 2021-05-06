@@ -36,7 +36,7 @@ namespace SpaceParkAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Parking>> GetParking(int id)
         {
-            var parking = await _context.Parkings.FindAsync(id);
+            var parking = await _parkingsRepository.GetParking(_context, id);
 
             if (parking == null)
             {

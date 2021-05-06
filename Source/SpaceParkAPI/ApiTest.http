@@ -8,29 +8,19 @@ GET https://localhost:44360/api/Parkings
 
 ###
 
-POST https://localhost:44360/api/Parkings
-Content-Type: application/json
-apikey: secret1234
-
-{
-    "Traveller":"Luke5",
-    "StarShip":"X-Wing5",
-    "SpaceportId":1
-}
+GET https://localhost:44360/api/Parkings/1
 
 ###
 
 POST https://localhost:44360/api/Parkings
 Content-Type: application/json
+apikey: apikey1234_visitor
+# apikey: apikey1234_admin
 
 {
-    "Traveller":"Luke",
-    "StarShip":"X-Wing",
-    "Spaceport":
-    {
-        "planetName": "Tatooine",
-        "name": "TatooinePort"
-    }
+    "Traveller":"Luke5",
+    "StarShip":"X-Wing5",
+    "SpaceportId":1
 }
 
 ###
