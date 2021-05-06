@@ -9,6 +9,8 @@ GET https://localhost:44360/api/Parkings
 ###
 
 GET https://localhost:44360/api/Parkings/1
+apikey: apikey1234_visitor
+# apikey: apikey1234_admin
 
 ###
 
@@ -18,8 +20,8 @@ apikey: apikey1234_visitor
 # apikey: apikey1234_admin
 
 {
-    "Traveller":"Luke5",
-    "StarShip":"X-Wing5",
+    "Traveller":"Luke1",
+    "StarShip":"X-Wing1",
     "SpaceportId":1
 }
 

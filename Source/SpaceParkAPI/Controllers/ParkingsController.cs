@@ -17,12 +17,14 @@ namespace SpaceParkAPI.Controllers
     {
         private readonly SpaceParkContext _context;
         private readonly IParkingsRepository _parkingsRepository;
+        private readonly ISpaceportsRepository _spaceportsRepository;
         //private readonly ILogger _logger; // från Stephans genomgång 2021-04-30
 
-        public ParkingsController(SpaceParkContext context, IParkingsRepository parkingsRepository)
+        public ParkingsController(SpaceParkContext context, IParkingsRepository parkingsRepository, ISpaceportsRepository spaceportsRepository)
         {
             _context = context;
             _parkingsRepository = parkingsRepository;
+            _spaceportsRepository = spaceportsRepository;
         }
 
         // GET: api/Parkings
@@ -83,7 +85,9 @@ namespace SpaceParkAPI.Controllers
         public async Task<ActionResult<Parking>> PostParking(PostParking postParking)
         //public async Task<ActionResult<Parking>> PostParking(Parking parking)
         {
-            var spaceport = await _context.Spaceports.SingleOrDefaultAsync(s => s.ID == postParking.SpaceportId);
+            //var spaceport = await _context.Spaceports.SingleOrDefaultAsync(s => s.ID == postParking.SpaceportId);
+
+            var spaceport = await _spaceportsRepository.GetSpaceport(_context, postParking.SpaceportId);
 
             if (spaceport == null)
             {
@@ -97,13 +101,14 @@ namespace SpaceParkAPI.Controllers
                 Spaceport = spaceport
             };
 
-            _context.Parkings.Add(newParking);
+            //_context.Parkings.Add(newParking);
+
+            newParking = await _parkingsRepository.AddParking(_context, newParking);
 
             //if (_context.Spaceports.Single(s => parking.Spaceport != null && s.ID == parking.Spaceport.ID) != null) {
             //    _context.Parkings.Add(parking);
 
             //}
-            await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetParking), new { id = newParking.ID }, newParking);
             //return CreatedAtAction(nameof(GetParking), new { id = parking.ID }, parking);

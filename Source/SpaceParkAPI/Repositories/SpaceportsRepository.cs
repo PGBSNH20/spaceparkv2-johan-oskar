@@ -12,5 +12,10 @@ namespace SpaceParkAPI.Repositories
         {
             return await context.Spaceports.ToListAsync();
         }
+
+        public async Task<Spaceport> GetSpaceport(SpaceParkContext context, int id)
+        {
+            return await context.Spaceports.FindAsync(id);
+        }
     }
 }

@@ -7,18 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpaceParkTest
+namespace SpaceParkTest.Repositories
 {
     class TestParkingsRepository : IParkingsRepository
     {
-        public IEnumerable<Parking> Parkings { get; } // readonly set
+        public List<Parking> Parkings { get; set; }
 
-        public TestParkingsRepository(IEnumerable<Parking> parkings)
+        public TestParkingsRepository(List<Parking> parkings)
         {
-            Parkings = parkings;
+            Parkings = parkings??new List<Parking>();
         }
 
-        public Task<IEnumerable<Parking>> GetAllParkings(SpaceParkContext context)
+        public Task<List<Parking>> GetAllParkings(SpaceParkContext context)
         {
             return Task.FromResult(Parkings);
         }
@@ -26,6 +26,13 @@ namespace SpaceParkTest
         public Task<Parking> GetParking(SpaceParkContext context, int id)
         {
             return Task.FromResult(Parkings.SingleOrDefault(p => p.ID == id));
+        }
+
+        public Task<Parking> AddParking(SpaceParkContext context, Parking newParking)
+        {
+            Parkings.Add(newParking);
+
+            return Task.FromResult(newParking);
         }
     }
 }

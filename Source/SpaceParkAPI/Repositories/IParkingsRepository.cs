@@ -9,7 +9,8 @@ namespace SpaceParkAPI.Repositories
 {
     public interface IParkingsRepository
     {
-        Task<IEnumerable<Parking>> GetAllParkings(SpaceParkContext context);
+        Task<List<Parking>> GetAllParkings(SpaceParkContext context);
         Task<Parking> GetParking(SpaceParkContext context, int id);
+        Task<Parking> AddParking(SpaceParkContext context, Parking newParking);
     }
 }

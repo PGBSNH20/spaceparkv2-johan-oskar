@@ -9,5 +9,7 @@ namespace SpaceParkAPI.Repositories
     public interface ISpaceportsRepository
     {
         Task<IEnumerable<Spaceport>> GetAllSpaceports(SpaceParkContext context);
+
+        Task<Spaceport> GetSpaceport(SpaceParkContext context, int id);
     }
 }
