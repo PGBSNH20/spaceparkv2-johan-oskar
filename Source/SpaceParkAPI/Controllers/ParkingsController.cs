@@ -143,5 +143,10 @@ namespace SpaceParkAPI.Controllers
 
             return endedParking;
         }
+
+        private bool ParkingExists(int id)
+        {
+            return _context.Parkings.Any(e => e.ID == id);
+        }
     }
 }
