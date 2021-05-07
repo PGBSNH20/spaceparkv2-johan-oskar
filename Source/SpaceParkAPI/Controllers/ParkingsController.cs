@@ -143,26 +143,5 @@ namespace SpaceParkAPI.Controllers
 
             return endedParking;
         }
-
-        // DELETE: api/Parkings/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteParking(int id)
-        {
-            var parking = await _context.Parkings.FindAsync(id);
-            if (parking == null)
-            {
-                return NotFound();
-            }
-
-            _context.Parkings.Remove(parking);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ParkingExists(int id)
-        {
-            return _context.Parkings.Any(e => e.ID == id);
-        }
     }
 }
