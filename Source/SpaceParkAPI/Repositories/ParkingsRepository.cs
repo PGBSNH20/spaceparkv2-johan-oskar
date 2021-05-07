@@ -29,28 +29,18 @@ namespace SpaceParkAPI.Repositories
             return parking;
         }
 
-        public async Task<Parking> EndParking(SpaceParkContext context, string travellerName)
+        public async Task<Parking> GetActiveParking(SpaceParkContext context, string travellerName)
         {
-            var activeParking = await context.Parkings
-                .Include(parking => parking.Spaceport)
-                .SingleOrDefaultAsync(parking => parking.Traveller == travellerName && parking.EndTime == null);
+            return await context.Parkings.Include(p => p.Spaceport).SingleOrDefaultAsync(parking => parking.Traveller == travellerName && parking.EndTime == null);
+        }
 
-            if (activeParking == null)
-            {
-                return null;
-            }
-
-            activeParking.EndTime = DateTime.Now;
-
-            var duration = activeParking.EndTime - activeParking.StartTime;
-            if (duration.HasValue)
-            {
-                // cost = 2 credits / minute
-                activeParking.TotalSum = Convert.ToDecimal(duration.Value.TotalMinutes) * 2; 
-            }
-
+        public async Task<Parking> EndParking(SpaceParkContext context, Parking parking)
+        {
+            context.Parkings.Update(parking);
             context.SaveChanges();
-            return activeParking;
+
+            //return activeParking;
+            return parking;
         }
     }
 }

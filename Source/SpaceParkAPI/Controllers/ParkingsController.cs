@@ -91,9 +91,7 @@ namespace SpaceParkAPI.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Parking>> PostParking(PostParking postParking)
-        //public async Task<ActionResult<Parking>> PostParking(Parking parking)
         {
-            //var spaceport = await _context.Spaceports.SingleOrDefaultAsync(s => s.ID == postParking.SpaceportId);
 
             var spaceport = await _spaceportsRepository.GetSpaceport(_context, postParking.SpaceportId);
 
@@ -109,17 +107,9 @@ namespace SpaceParkAPI.Controllers
                 Spaceport = spaceport
             };
 
-            //_context.Parkings.Add(newParking);
-
             newParking = await _parkingsRepository.AddParking(_context, newParking);
 
-            //if (_context.Spaceports.Single(s => parking.Spaceport != null && s.ID == parking.Spaceport.ID) != null) {
-            //    _context.Parkings.Add(parking);
-
-            //}
-
             return CreatedAtAction(nameof(GetParking), new { id = newParking.ID }, newParking);
-            //return CreatedAtAction(nameof(GetParking), new { id = parking.ID }, parking);
         }
 
         // PATCH: api/Parkings/5
@@ -127,14 +117,25 @@ namespace SpaceParkAPI.Controllers
         [ActionName("Checkout")]
         public async Task<ActionResult<Parking>> EndParking([FromQuery] string traveller)
         {
-            var parking = await _parkingsRepository.EndParking(_context, traveller);
+            var activeParking = await _parkingsRepository.GetActiveParking(_context, traveller);
 
-            if (parking == null)
+            if (activeParking == null)
             {
                 return NotFound();
             }
 
-            return parking;
+            activeParking.EndTime = DateTime.Now;
+
+            var duration = activeParking.EndTime - activeParking.StartTime;
+            if (duration.HasValue)
+            {
+                // cost = 2 credits / minute
+                activeParking.TotalSum = Convert.ToDecimal(duration.Value.TotalMinutes) * 2;
+            }
+
+            var endedParking = await _parkingsRepository.EndParking(_context, activeParking);
+
+            return endedParking;
         }
 
         // DELETE: api/Parkings/5
