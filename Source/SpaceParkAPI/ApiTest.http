@@ -105,7 +105,7 @@ apikey: apikey1234_visitor
 ###
 
 GET https://localhost:44360/api/People
-apikey: secret1234
+apikey: apikey1234_visitor
 
 ###############################
 ########## Starships ##########
@@ -119,4 +119,29 @@ apikey: secret1234
 ###
 
 GET https://localhost:44360/api/Starships/3
-apikey: secret1234
+apikey: apikey1234_visitor
+
+###
+
+GET https://localhost:44360​/api/People/1
+apikey: apikey1234_visitor
+
+###
+
+GET https://localhost:44360​/api/People
+apikey: apikey1234_visitor
+
+###
+
+GET https://localhost:44360​/api/Spaceports
+apikey: apikey1234_visitor
+
+###
+
+GET https://localhost:44360​/api/Spaceports/7
+apikey: apikey1234_visitor
+
+###
+
+GET https://localhost:44360​/api/Starships/1
+apikey: apikey1234_visitor
