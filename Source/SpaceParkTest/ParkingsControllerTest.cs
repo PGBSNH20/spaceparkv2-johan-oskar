@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using SpaceParkAPI.APIModels;
 using SpaceParkAPI.Controllers;
 using SpaceParkAPI.Models;
@@ -120,13 +121,58 @@ namespace SpaceParkTest
 
             // Act
             //var newParkings = parkingsController.PostParking(postParking).Result.Value;
-            var newParkings = parkingsController.PostParking(postParking);
+            var newParking = ((CreatedAtActionResult)parkingsController.PostParking(postParking).Result.Result).Value;
 
             // Assert
-            Assert.Equal(postParking.Traveller, testParkingsrepo.Parkings[0].Traveller);
-            Assert.Equal(postParking.StarShip, testParkingsrepo.Parkings[0].StarShip);
-            Assert.Equal(postParking.SpaceportId, testParkingsrepo.Parkings[0].Spaceport.ID);
+            Assert.IsType<Parking>(newParking);
+            Assert.Equal(postParking.Traveller, ((Parking)newParking).Traveller);
+            Assert.Equal(postParking.StarShip, ((Parking)newParking).StarShip);
+            Assert.Equal(postParking.SpaceportId, ((Parking)newParking).Spaceport.ID);
 
+        }
+
+        [Fact]
+        public void On_PostNewParking_When_ActiveParkingExists_Expect_BadRequest()
+        {
+            // Arrange
+            List<Spaceport> spacePorts = new List<Spaceport>
+            {
+                new Spaceport()
+                {
+                    ID = 1,
+                    PlanetName = "Tatooine",
+                    Name = "Mos Eisley"
+                }
+            };
+
+            List<Parking> testParkings = new List<Parking>
+            {
+                new Parking()
+                {
+                    ID = 1,
+                    Traveller = "Anakin Skywalker",
+                    StarShip = "Naboo fighter",
+                    Spaceport = spacePorts[0],
+                },
+            };
+
+            PostParking postParking = new PostParking()
+            {
+                Traveller = "Anakin Skywalker",
+                StarShip = "Naboo fighter",
+                SpaceportId = spacePorts[0].ID
+            };
+
+            TestParkingsRepository testParkingsrepo = new TestParkingsRepository(testParkings);
+            ISpaceportsRepository testSpaceportsRepo = new TestSpaceportsRepository(spacePorts);
+            var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo);
+
+            // Act
+            //var newParkings = parkingsController.PostParking(postParking).Result.Value;
+            var badRequest = parkingsController.PostParking(postParking).Result.Result;
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(badRequest);
         }
 
         [Fact]

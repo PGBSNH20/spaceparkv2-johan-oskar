@@ -92,6 +92,12 @@ namespace SpaceParkAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Parking>> PostParking(PostParking postParking)
         {
+            var activeParking = await _parkingsRepository.GetActiveParking(_context, postParking.Traveller);
+
+            if (activeParking != null)
+            {
+                return BadRequest("This traveller already has an active parking.");
+            }
 
             var spaceport = await _spaceportsRepository.GetSpaceport(_context, postParking.SpaceportId);
 
