@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace SpaceParkTest
+namespace SpaceParkTest.Tests
 {
     #region TestData
     internal class TestData
