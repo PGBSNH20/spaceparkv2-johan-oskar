@@ -44,28 +44,28 @@ namespace SpaceParkAPI.SWAPI
         }
 
         //Fetch people from API
-        public static Task<List<Person>> People(int? input = null)
+        public async static Task<List<Person>> People(string name = null)
         {
             string requestUrl = RequestURLs.People;
-            if (input != null)
+            if (name != null)
             {
-                requestUrl += $"?search={input}";
+                requestUrl += $"?search={name}";
             }
 
-            return Fetch.Data<Person>(requestUrl);
+            return await Fetch.Data<Person>(requestUrl);
         }
 
         //Fetch Starships from API
-        public static Task<List<Starship>> Starships(int? input = null)
+        public async static Task<List<Starship>> Starships(string name = null)
         {
             string requestUrl = RequestURLs.Starships;
 
-            if(input != null)
+            if (name != null)
             {
-                requestUrl += $"?search={input}";
+                requestUrl += $"?search={name}";
             }
 
-            return Fetch.Data<Starship>(requestUrl);
+            return await Fetch.Data<Starship>(requestUrl);
         }
     }
 }

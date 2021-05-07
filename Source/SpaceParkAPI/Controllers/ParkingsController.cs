@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using SpaceParkAPI.APIModels;
 using SpaceParkAPI.Models;
 using SpaceParkAPI.Repositories;
+using SpaceParkAPI.SWAPI;
 
 namespace SpaceParkAPI.Controllers
 {
@@ -44,7 +45,36 @@ namespace SpaceParkAPI.Controllers
         [ActionName("Ended")]
         public async Task<ActionResult<IEnumerable<Parking>>> GetEndedForTraveller([FromQuery] string traveller)
         {
-            return (await _parkingsRepository.GetPreviousParkingsForTraveller(_context, traveller)).ToList();
+            var endedParkings = (await _parkingsRepository.GetPreviousParkingsForTraveller(_context, traveller)).ToList();
+
+            if (endedParkings.Count == 0)
+            {
+                return NotFound("\"This travellers doesn't have any previous parkings.\"");
+            }
+
+            return endedParkings;
+        }
+
+        /// <summary>
+        /// Get all parking rows/entities from the database.
+        /// </summary>
+        [HttpGet("[action]")]
+        [ActionName("Active")]
+        public async Task<ActionResult<Parking>> GetActiveForTraveller([FromQuery] string traveller)
+        {
+            if (string.IsNullOrEmpty(traveller))
+            {
+                return NotFound("\"The 'traveller' query parameter is null or empty.\"");
+            }
+
+            var activeParking = await _parkingsRepository.GetActiveParking(_context, traveller);
+
+            if (activeParking == null)
+            {
+                return NotFound("This travellers doesn't have an active parking.");
+            }
+
+            return activeParking;
         }
 
         /// <summary>
@@ -82,7 +112,17 @@ namespace SpaceParkAPI.Controllers
 
             if (spaceport == null)
             {
-                return NotFound();
+                return NotFound("There is no spaceport with that {id}.");
+            }
+
+            if ((await Fetch.People(postParking.Traveller)).Count == 0)
+            {
+                return NotFound("There is no Star Wars character with that name. Use the \"/People\" endpoint to get a list of all characters or to find a specific character. See the documentation for more details.");
+            }
+
+            if ((await Fetch.Starships(postParking.StarShip)).Count == 0)
+            {
+                return NotFound("There is no Star Wars starship with that name. Use the \"/Starships\" endpoint to get a list of all starships. See the documentation for more details.");
             }
 
             var newParking = new Parking

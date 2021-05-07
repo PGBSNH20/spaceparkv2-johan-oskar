@@ -31,7 +31,7 @@ namespace SpaceParkAPI.Repositories
 
         public async Task<Parking> GetActiveParking(SpaceParkContext context, string travellerName)
         {
-            return await context.Parkings.Include(p => p.Spaceport).SingleOrDefaultAsync(parking => parking.Traveller == travellerName && parking.EndTime == null);
+            return await context.Parkings.Include(p => p.Spaceport).OrderBy(p => p.StartTime).LastOrDefaultAsync(parking => parking.Traveller == travellerName && parking.EndTime == null);
         }
 
         public async Task<Parking> UpdateParking(SpaceParkContext context, Parking parking)

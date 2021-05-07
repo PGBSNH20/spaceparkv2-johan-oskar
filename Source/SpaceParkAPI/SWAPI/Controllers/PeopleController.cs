@@ -14,8 +14,9 @@ namespace SpaceParkAPI.SWAPI.Controllers
     public class PeopleController : ControllerBase
     {
         // GET: api/<PeopleController>
-        [HttpGet]
-        public ActionResult<IEnumerable<Person>> Get()
+        [HttpGet("[action]")]
+        [ActionName("All")]
+        public ActionResult<IEnumerable<Person>> GetAll()
         {
             // todo: error handling
             return Fetch.People().Result;
@@ -25,12 +26,12 @@ namespace SpaceParkAPI.SWAPI.Controllers
         /// <summary>
         /// Test comment <PeopleController>/5
         /// </summary>
-        /// <param name="id">Id of person in the Star Wars API</param>
+        /// <param name="name">Id of person in the Star Wars API</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        public ActionResult<Person> Get(int id)
+        [HttpGet]
+        public ActionResult<Person> Get([FromQuery] string name)
         {
-            var person = Fetch.People(id).Result.FirstOrDefault();
+            var person = Fetch.People(name).Result.FirstOrDefault();
 
             if (person == null)
             {
