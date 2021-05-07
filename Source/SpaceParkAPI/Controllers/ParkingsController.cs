@@ -56,6 +56,28 @@ namespace SpaceParkAPI.Controllers
         }
 
         /// <summary>
+        /// Get all parking rows/entities from the database.
+        /// </summary>
+        [HttpGet("[action]")]
+        [ActionName("Active")]
+        public async Task<ActionResult<Parking>> GetActiveForTraveller([FromQuery] string traveller)
+        {
+            if (string.IsNullOrEmpty(traveller))
+            {
+                return NotFound("\"The 'traveller' query parameter is null or empty.\"");
+            }
+
+            var activeParking = await _parkingsRepository.GetActiveParking(_context, traveller);
+
+            if (activeParking == null)
+            {
+                return NotFound("This travellers doesn't have an active parking.");
+            }
+
+            return activeParking;
+        }
+
+        /// <summary>
         /// Find and return a {parking} entity with the specified {id} from the database.
         /// If no entity can be found, then {null} is returned.
         /// </summary>

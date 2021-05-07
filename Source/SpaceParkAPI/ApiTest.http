@@ -14,13 +14,25 @@ GET https://localhost:44360/api/Parkings/1
 apikey: apikey1234_visitor
 # apikey: apikey1234_admin
 
-GET https://localhost:44360/api/Parkings/Ended?traveller=Not Luke again 2
+###
+
+GET https://localhost:44360/api/Parkings/Active
+Content-Type: application/json
+apikey: apikey1234_visitor
+
+###
+
+GET https://localhost:44360/api/Parkings/Active?traveller=Luke
 Content-Type: application/json
 apikey: apikey1234_visitor
 # apikey: apikey1234_admin
 
-{
-}
+###
+
+GET https://localhost:44360/api/Parkings/Ended?traveller=Han Solo
+Content-Type: application/json
+apikey: apikey1234_visitor
+# apikey: apikey1234_admin
 
 ###
 
@@ -30,8 +42,8 @@ apikey: apikey1234_visitor
 # apikey: apikey1234_admin
 
 {
-    "Traveller":"Not Luke again 2",
-    "StarShip":"Y-Wing again 2",
+    "Traveller":"Han Solo",
+    "StarShip":"Millennium Falcon",
     "SpaceportId":1
 }
 
@@ -44,6 +56,7 @@ apikey: apikey1234_visitor
 
 {
 }
+
 ###
 
 PATCH https://localhost:44360/api/Parkings/Checkout?traveller=Not Luke again 2
@@ -53,8 +66,6 @@ apikey: apikey1234_visitor
 
 {
 }
-
-DELETE https://localhost:44360/api/Parkings/1
 
 ################################
 ########## Spaceports ##########
@@ -104,8 +115,13 @@ apikey: apikey1234_visitor
 
 ###
 
-GET https://localhost:44360/api/People
-apikey: secret1234
+GET https://localhost:44360/api/People/All
+apikey: apikey1234_visitor
+
+###
+
+GET https://localhost:44360/api/People?name=Luke Skywalker
+apikey: apikey1234_visitor
 
 ###############################
 ########## Starships ##########
@@ -114,9 +130,9 @@ apikey: secret1234
 ########## GET ##########
 
 GET https://localhost:44360/api/Starships
-apikey: secret1234
+apikey: apikey1234_visitor
 
 ###
 
-GET https://localhost:44360/api/Starships/3
-apikey: secret1234
+GET https://localhost:44360/api/starships?search=Millennium Falcon
+apikey: apikey1234_visitor

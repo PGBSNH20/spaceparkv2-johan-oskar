@@ -56,7 +56,7 @@ namespace SpaceParkAPI.SWAPI
         }
 
         //Fetch Starships from API
-        public static Task<List<Starship>> Starships(string name = null)
+        public async static Task<List<Starship>> Starships(string name = null)
         {
             string requestUrl = RequestURLs.Starships;
 
@@ -65,7 +65,7 @@ namespace SpaceParkAPI.SWAPI
                 requestUrl += $"?search={name}";
             }
 
-            return Fetch.Data<Starship>(requestUrl);
+            return await Fetch.Data<Starship>(requestUrl);
         }
     }
 }
