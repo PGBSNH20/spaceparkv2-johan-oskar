@@ -23,8 +23,7 @@ namespace SpaceParkAPI.Middleware
         {
             // Read the API keys from appsettings.json.
             var ApiKeys = context.RequestServices.GetRequiredService<IConfiguration>().GetSection("ApiKeys").GetChildren().ToDictionary(c => c.Key, c => c.Value);
-            string apiKeyVisitor;
-            string apiKeyAdmin;
+            string apiKeyVisitor, apiKeyAdmin;
             StringValues headerApiKey;
 
             // If either of the API keys can't be read from appsettings.json return with the status code 500 (Internal Server Error).

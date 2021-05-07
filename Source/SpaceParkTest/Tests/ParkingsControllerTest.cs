@@ -17,14 +17,14 @@ namespace SpaceParkTest.Tests
         public void On_ParkingEndpointGetMethod_Expect_AllParkings()
         {
             // Arrange
-            Spaceport testSpaceport = new Spaceport()
+            Spaceport testSpaceport = new()
             {
                 ID = 1,
                 PlanetName = "Tatooine",
                 Name = "Mos Eisley"
             };
 
-            List<Parking> testParkings = new List<Parking>
+            List<Parking> testParkings = new()
             {
                 new Parking()
                 {
@@ -58,13 +58,6 @@ namespace SpaceParkTest.Tests
         public void On_GetMethod_And_EndedAction_And_TravellerName_Expect_AllParkings()
         {
             // Arrange
-            Spaceport testSpaceport = new Spaceport()
-            {
-                ID = 1,
-                PlanetName = "Tatooine",
-                Name = "Mos Eisley"
-            };
-
             // Set `EndTime` and `TotalSum` on the first object.
             // This is the object we expect from `parkingsController.GetEndedForTraveller()`
             List<Parking> testParkings = TestData.GetTwoParkingsInList();
@@ -90,14 +83,14 @@ namespace SpaceParkTest.Tests
         public void On_ParkingEndpointGetMethodWithId_Expect_SingleParking()
         {
             // Arrange
-            Spaceport testSpaceport = new Spaceport()
+            Spaceport testSpaceport = new()
             {
                 ID = 1,
                 PlanetName = "Tatooine",
                 Name = "Mos Eisley"
             };
 
-            List<Parking> testParkings = new List<Parking>
+            List<Parking> testParkings = new()
             {
                 new Parking()
                 {
@@ -131,7 +124,7 @@ namespace SpaceParkTest.Tests
         public void On_ParkingEndpointPostNewParking_Expect_SingleParking()
         {
             // Arrange
-            List<Spaceport> spacePorts = new List<Spaceport>
+            List<Spaceport> spacePorts = new()
             {
                 new Spaceport()
                 {
@@ -141,14 +134,14 @@ namespace SpaceParkTest.Tests
                 }
             };
 
-            PostParking postParking = new PostParking()
+            PostParking postParking = new()
             {
                 Traveller = "Anakin Skywalker",
                 StarShip = "Naboo fighter",
                 SpaceportId = spacePorts[0].ID
             };
 
-            TestParkingsRepository testParkingsrepo = new TestParkingsRepository(null);
+            TestParkingsRepository testParkingsrepo = new(null);
             ISpaceportsRepository testSpaceportsRepo = new TestSpaceportsRepository(spacePorts);
             var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo);
 
@@ -168,7 +161,7 @@ namespace SpaceParkTest.Tests
         public void On_PostNewParking_When_ActiveParkingExists_Expect_BadRequest()
         {
             // Arrange
-            List<Spaceport> spacePorts = new List<Spaceport>
+            List<Spaceport> spacePorts = new()
             {
                 new Spaceport()
                 {
@@ -178,7 +171,7 @@ namespace SpaceParkTest.Tests
                 }
             };
 
-            List<Parking> testParkings = new List<Parking>
+            List<Parking> testParkings = new()
             {
                 new Parking()
                 {
@@ -189,14 +182,14 @@ namespace SpaceParkTest.Tests
                 },
             };
 
-            PostParking postParking = new PostParking()
+            PostParking postParking = new()
             {
                 Traveller = "Anakin Skywalker",
                 StarShip = "Naboo fighter",
                 SpaceportId = spacePorts[0].ID
             };
 
-            TestParkingsRepository testParkingsrepo = new TestParkingsRepository(testParkings);
+            TestParkingsRepository testParkingsrepo = new(testParkings);
             ISpaceportsRepository testSpaceportsRepo = new TestSpaceportsRepository(spacePorts);
             var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo);
 
@@ -212,17 +205,12 @@ namespace SpaceParkTest.Tests
         public void On_ParkingEndpointPatchWithTravellerQuery_Expect_EndparkingSuccess()
         {
             // Arrange
-            List<Spaceport> spacePorts = new List<Spaceport>
+            List<Spaceport> spacePorts = new()
             {
-                new Spaceport()
-                {
-                    ID = 1,
-                    PlanetName = "Tatooine",
-                    Name = "Mos Eisley"
-                }
+                new Spaceport() { ID = 1, PlanetName = "Tatooine", Name = "Mos Eisley" }
             };
 
-            List<Parking> testParkings = new List<Parking>
+            List<Parking> testParkings = new()
             {
                 new Parking()
                 {
@@ -242,7 +230,7 @@ namespace SpaceParkTest.Tests
                 },
             };
 
-            TestParkingsRepository testParkingsrepo = new TestParkingsRepository(testParkings);
+            TestParkingsRepository testParkingsrepo = new(testParkings);
             ISpaceportsRepository testSpaceportsRepo = new TestSpaceportsRepository(spacePorts);
             var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo);
 

@@ -12,7 +12,7 @@ namespace SpaceParkAPI.SWAPI.Controllers
     [ApiController]
     public class StarshipsController : ControllerBase
     {
-        private IStarshipsRepository _starshipsRepository;
+        private readonly IStarshipsRepository _starshipsRepository;
 
         public StarshipsController(IStarshipsRepository starshipsRepository)
         {
