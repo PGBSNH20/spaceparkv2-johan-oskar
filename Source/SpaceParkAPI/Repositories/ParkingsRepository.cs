@@ -22,7 +22,7 @@ namespace SpaceParkAPI.Repositories
 
         public async Task<Parking> AddParking(SpaceParkContext context, Parking parking)
         {
-            context.Add(parking);
+            context.Parkings.Add(parking);
 
             await context.SaveChangesAsync();
 

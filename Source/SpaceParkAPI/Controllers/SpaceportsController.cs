@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SpaceParkAPI.APIModels;
 using SpaceParkAPI.Models;
+using SpaceParkAPI.Repositories;
 
 namespace SpaceParkAPI.Controllers
 {
@@ -14,24 +16,26 @@ namespace SpaceParkAPI.Controllers
     public class SpaceportsController : ControllerBase
     {
         private readonly SpaceParkContext _context;
+        private ISpaceportsRepository _spaceportRepository;
 
-        public SpaceportsController(SpaceParkContext context)
+        public SpaceportsController(SpaceParkContext context, ISpaceportsRepository spaceportsRepository)
         {
             _context = context;
+            _spaceportRepository = spaceportsRepository;
         }
 
         // GET: api/Spaceports
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Spaceport>>> GetSpaceports()
         {
-            return await _context.Spaceports.ToListAsync();
+            return (await _spaceportRepository.GetAllSpaceports(_context)).ToList();
         }
 
         // GET: api/Spaceports/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Spaceport>> GetSpaceport(int id)
         {
-            var spaceport = await _context.Spaceports.FindAsync(id);
+            var spaceport = await _spaceportRepository.GetSpaceport(_context, id);
 
             if (spaceport == null)
             {
@@ -41,67 +45,20 @@ namespace SpaceParkAPI.Controllers
             return spaceport;
         }
 
-        // PUT: api/Spaceports/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutSpaceport(int id, Spaceport spaceport)
-        {
-            if (id != spaceport.ID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(spaceport).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SpaceportExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/Spaceports
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Spaceport>> PostSpaceport(Spaceport spaceport)
+        public async Task<ActionResult<Spaceport>> PostSpaceport(PostSpaceport postSpaceport)
         {
-            _context.Spaceports.Add(spaceport);
-            await _context.SaveChangesAsync();
+            var spaceport = new Spaceport
+            {
+                PlanetName = "",
+                Name = postSpaceport.Name,
+            };
+
+            await _spaceportRepository.AddSpaceport(_context, spaceport);
 
             return CreatedAtAction(nameof(GetSpaceport), new { id = spaceport.ID }, spaceport);
-        }
-
-        // DELETE: api/Spaceports/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSpaceport(int id)
-        {
-            var spaceport = await _context.Spaceports.FindAsync(id);
-            if (spaceport == null)
-            {
-                return NotFound();
-            }
-
-            _context.Spaceports.Remove(spaceport);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool SpaceportExists(int id)
-        {
-            return _context.Spaceports.Any(e => e.ID == id);
         }
     }
 }

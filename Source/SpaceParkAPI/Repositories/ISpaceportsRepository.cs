@@ -11,5 +11,6 @@ namespace SpaceParkAPI.Repositories
         Task<IEnumerable<Spaceport>> GetAllSpaceports(SpaceParkContext context);
 
         Task<Spaceport> GetSpaceport(SpaceParkContext context, int id);
+        Task<Spaceport> AddSpaceport(SpaceParkContext context, Spaceport spaceport);
     }
 }

@@ -17,5 +17,14 @@ namespace SpaceParkAPI.Repositories
         {
             return await context.Spaceports.FindAsync(id);
         }
+
+        public async Task<Spaceport> AddSpaceport(SpaceParkContext context, Spaceport spaceport)
+        {
+            context.Spaceports.Add(spaceport);
+
+            await context.SaveChangesAsync();
+
+            return spaceport;
+        }
     }
 }

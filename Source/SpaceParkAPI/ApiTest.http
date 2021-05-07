@@ -14,6 +14,14 @@ GET https://localhost:44360/api/Parkings/1
 apikey: apikey1234_visitor
 # apikey: apikey1234_admin
 
+GET https://localhost:44360/api/Parkings/Ended?traveller=Not Luke again 2
+Content-Type: application/json
+apikey: apikey1234_visitor
+# apikey: apikey1234_admin
+
+{
+}
+
 ###
 
 POST https://localhost:44360/api/Parkings
@@ -22,14 +30,14 @@ apikey: apikey1234_visitor
 # apikey: apikey1234_admin
 
 {
-    "Traveller":"Not Luke",
-    "StarShip":"Y-Wing",
+    "Traveller":"Not Luke again 2",
+    "StarShip":"Y-Wing again 2",
     "SpaceportId":1
 }
 
 ###
 
-PUT https://localhost:44360/api/Parkings/Checkout/2
+PUT https://localhost:44360/api/Parkings/Checkout/4
 Content-Type: application/json
 apikey: apikey1234_visitor
 # apikey: apikey1234_admin
@@ -38,7 +46,7 @@ apikey: apikey1234_visitor
 }
 ###
 
-HttpPatch https://localhost:44360/api/Parkings/Checkout?traveller=Luke1
+PATCH https://localhost:44360/api/Parkings/Checkout?traveller=Not Luke again 2
 Content-Type: application/json
 apikey: apikey1234_visitor
 # apikey: apikey1234_admin
@@ -60,20 +68,18 @@ apikey: apikey1234_visitor
 
 ###
 
-GET https://localhost:44360/api/Spaceports/1
-apikey: secret1234
+GET https://localhost:44360/api/Spaceports/4
+apikey: apikey1234_visitor
 
 ########## POST ##########
 
 POST https://localhost:44360/api/Spaceports
 Content-Type: application/json
-# apikey: secret1234
 # apikey: apikey1234_visitor
 apikey: apikey1234_admin
 
 {
-    "PlanetName":"Tatooine50055",
-    "Name":"TatooinePort50055"
+    "Name":"Mos Eisley"
 }
 
 ########## PUT ##########

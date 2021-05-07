@@ -11,6 +11,7 @@ namespace SpaceParkTest.Repositories
     class TestSpaceportsRepository : ISpaceportsRepository
     {
         public IEnumerable<Spaceport> Spaceports { get; } // readonly set
+
         public TestSpaceportsRepository(IEnumerable<Spaceport> spaceports)
         {
             Spaceports = spaceports;
@@ -24,6 +25,11 @@ namespace SpaceParkTest.Repositories
         public Task<Spaceport> GetSpaceport(SpaceParkContext context, int id)
         {
             return Task.FromResult(Spaceports.SingleOrDefault(p => p.ID == id));
+        }
+
+        public Task<Spaceport> AddSpaceport(SpaceParkContext context, Spaceport spaceport)
+        {
+            throw new NotImplementedException();
         }
     }
 }
