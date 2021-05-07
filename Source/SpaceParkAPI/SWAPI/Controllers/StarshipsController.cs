@@ -14,17 +14,18 @@ namespace SpaceParkAPI.SWAPI.Controllers
     public class StarshipsController : ControllerBase
     {
         // GET: api/<StarshipsController>
-        [HttpGet]
+        [HttpGet("[action]")]
+        [ActionName("All")]
         public ActionResult<IEnumerable<Starship>> Get()
         {
             return Fetch.Starships().Result;
         }
 
         // GET api/<StarshipsController>/5
-        [HttpGet("{id}")]
-        public ActionResult<Starship> Get(int id)
+        [HttpGet]
+        public ActionResult<Starship> Get([FromQuery] string name)
         {
-            var starship = Fetch.Starships(id).Result.FirstOrDefault();
+            var starship = Fetch.Starships(name).Result.FirstOrDefault();
 
             if (starship == null)
             {
