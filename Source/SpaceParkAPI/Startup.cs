@@ -9,6 +9,8 @@ using Microsoft.OpenApi.Models;
 using SpaceParkAPI.Middleware;
 using SpaceParkAPI.Models;
 using SpaceParkAPI.Repositories;
+using System.Collections.Generic;
+using System.IO;
 
 namespace SpaceParkAPI
 {
@@ -29,6 +31,7 @@ namespace SpaceParkAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SpaceParkAPI", Version = "v1" });
+                c.IncludeXmlComments(Path.Combine(System.AppContext.BaseDirectory, "SpaceParkAPI.xml"));
             });
             services.AddSingleton<IParkingsRepository, ParkingsRepository>();
             services.AddSingleton<ISpaceportsRepository, SpaceportsRepository>();

@@ -12,7 +12,8 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/Parkings",
+      //"launchUrl": "api/Parkings",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +21,8 @@
     "SpaceParkAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/Parkings",
+      //"launchUrl": "api/Parkings",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

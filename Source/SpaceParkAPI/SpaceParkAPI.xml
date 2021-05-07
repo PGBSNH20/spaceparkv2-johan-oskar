@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SpaceParkAPI</name>
+    </assembly>
+    <members>
+        <member name="M:SpaceParkAPI.Controllers.ParkingsController.GetParkings">
+            <summary>
+            Get all parking rows/entities from the database.
+            </summary>
+        </member>
+        <member name="M:SpaceParkAPI.Controllers.ParkingsController.GetParking(System.Int32)">
+            <summary>
+            Find and return a {parking} entity with the specified {id} from the database.
+            If no entity can be found, then {null} is returned.
+            </summary>
+            <param name="id">The {id} of requested {parking} entity.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SpaceParkAPI.SWAPI.Controllers.PeopleController.Get(System.Int32)" -->
+    </members>
+</doc>

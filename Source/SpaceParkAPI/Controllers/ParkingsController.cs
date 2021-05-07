@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -27,13 +28,20 @@ namespace SpaceParkAPI.Controllers
             _spaceportsRepository = spaceportsRepository;
         }
 
-        // GET: api/Parkings
+        /// <summary>
+        /// Get all parking rows/entities from the database.
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Parking>>> GetParkings()
         {
             return (await _parkingsRepository.GetAllParkings(_context)).ToList();
         }
 
+        /// <summary>
+        /// Find and return a {parking} entity with the specified {id} from the database.
+        /// If no entity can be found, then {null} is returned.
+        /// </summary>
+        /// <param name="id">The {id} of requested {parking} entity.</param>
         // GET: api/Parkings/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Parking>> GetParking(int id)
