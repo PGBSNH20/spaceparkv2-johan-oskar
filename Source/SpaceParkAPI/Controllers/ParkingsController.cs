@@ -38,6 +38,16 @@ namespace SpaceParkAPI.Controllers
         }
 
         /// <summary>
+        /// Get all parking rows/entities from the database.
+        /// </summary>
+        [HttpGet("[action]")]
+        [ActionName("Ended")]
+        public async Task<ActionResult<IEnumerable<Parking>>> GetEndedForTraveller([FromQuery] string traveller)
+        {
+            return (await _parkingsRepository.GetPreviousParkingsForTraveller(_context, traveller)).ToList();
+        }
+
+        /// <summary>
         /// Find and return a {parking} entity with the specified {id} from the database.
         /// If no entity can be found, then {null} is returned.
         /// </summary>
@@ -56,36 +66,36 @@ namespace SpaceParkAPI.Controllers
             return parking;
         }
 
-        // PUT: api/Parkings/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutParking(int id, Parking parking)
-        {
-            if (id != parking.ID)
-            {
-                return BadRequest();
-            }
+        //// PUT: api/Parkings/5
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutParking(int id, Parking parking)
+        //{
+        //    if (id != parking.ID)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(parking).State = EntityState.Modified;
+        //    _context.Entry(parking).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ParkingExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!ParkingExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         // POST: api/Parkings
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

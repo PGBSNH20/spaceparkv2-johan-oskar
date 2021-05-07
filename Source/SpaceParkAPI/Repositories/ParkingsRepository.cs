@@ -42,5 +42,10 @@ namespace SpaceParkAPI.Repositories
             //return activeParking;
             return parking;
         }
+
+        public async Task<IEnumerable<Parking>> GetPreviousParkingsForTraveller(SpaceParkContext context, string travellerName)
+        {
+            return await context.Parkings.Include(p => p.Spaceport).Where(parking => parking.Traveller == travellerName && parking.EndTime != null).ToListAsync();
+        }
     }
 }

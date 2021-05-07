@@ -1,0 +1,26 @@
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SpaceParkTest.Helpers
+{
+    public static class CloneTestData
+    {
+        public static List<T> CloneCollection<T>(IEnumerable<T> data)
+        {
+            string dataAsJson = JsonConvert.SerializeObject(data);
+            return (List<T>)JsonConvert.DeserializeObject<IEnumerable<T>>(dataAsJson);
+        }
+    }
+
+    public static class Compare
+    {
+        public static bool CompareObjects(object object1, object object2)
+        {
+            return JsonConvert.SerializeObject(object1) == JsonConvert.SerializeObject(object2);
+        }
+    }
+}

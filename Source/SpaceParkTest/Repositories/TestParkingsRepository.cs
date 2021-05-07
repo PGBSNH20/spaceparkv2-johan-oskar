@@ -44,5 +44,10 @@ namespace SpaceParkTest.Repositories
         {
             return Task.FromResult(parking);
         }
+
+        public Task<IEnumerable<Parking>> GetPreviousParkingsForTraveller(SpaceParkContext context, string travellerName)
+        {
+            return Task.FromResult(Parkings.Where(parking => parking.Traveller == travellerName && parking.EndTime != null));
+        }
     }
 }

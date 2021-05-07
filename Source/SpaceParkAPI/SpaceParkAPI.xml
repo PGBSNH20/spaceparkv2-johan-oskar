@@ -9,6 +9,11 @@
             Get all parking rows/entities from the database.
             </summary>
         </member>
+        <member name="M:SpaceParkAPI.Controllers.ParkingsController.GetEndedForTraveller(System.String)">
+            <summary>
+            Get all parking rows/entities from the database.
+            </summary>
+        </member>
         <member name="M:SpaceParkAPI.Controllers.ParkingsController.GetParking(System.Int32)">
             <summary>
             Find and return a {parking} entity with the specified {id} from the database.
