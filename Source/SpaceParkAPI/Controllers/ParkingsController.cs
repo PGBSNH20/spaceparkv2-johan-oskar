@@ -133,7 +133,7 @@ namespace SpaceParkAPI.Controllers
                 activeParking.TotalSum = Convert.ToDecimal(duration.Value.TotalMinutes) * 2;
             }
 
-            var endedParking = await _parkingsRepository.EndParking(_context, activeParking);
+            var endedParking = await _parkingsRepository.UpdateParking(_context, activeParking);
 
             return endedParking;
         }

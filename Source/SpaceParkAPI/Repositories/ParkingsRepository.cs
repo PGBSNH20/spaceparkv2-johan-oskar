@@ -34,10 +34,10 @@ namespace SpaceParkAPI.Repositories
             return await context.Parkings.Include(p => p.Spaceport).SingleOrDefaultAsync(parking => parking.Traveller == travellerName && parking.EndTime == null);
         }
 
-        public async Task<Parking> EndParking(SpaceParkContext context, Parking parking)
+        public async Task<Parking> UpdateParking(SpaceParkContext context, Parking parking)
         {
             context.Parkings.Update(parking);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             //return activeParking;
             return parking;

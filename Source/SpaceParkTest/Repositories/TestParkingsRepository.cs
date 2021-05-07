@@ -34,5 +34,15 @@ namespace SpaceParkTest.Repositories
 
             return Task.FromResult(newParking);
         }
+
+        public Task<Parking> GetActiveParking(SpaceParkContext context, string travellerName)
+        {
+            return Task.FromResult(Parkings.SingleOrDefault(parking => parking.Traveller == travellerName && parking.EndTime == null));
+        }
+
+        public Task<Parking> UpdateParking(SpaceParkContext context, Parking parking)
+        {
+            return Task.FromResult(parking);
+        }
     }
 }

@@ -13,6 +13,6 @@ namespace SpaceParkAPI.Repositories
         Task<Parking> GetParking(SpaceParkContext context, int id);
         Task<Parking> AddParking(SpaceParkContext context, Parking newParking);
         Task<Parking> GetActiveParking(SpaceParkContext context, string traveller);
-        Task<Parking> EndParking(SpaceParkContext context, Parking parking);
+        Task<Parking> UpdateParking(SpaceParkContext context, Parking parking);
     }
 }

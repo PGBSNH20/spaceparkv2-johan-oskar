@@ -129,5 +129,51 @@ namespace SpaceParkTest
 
         }
 
+        [Fact]
+        public void On_ParkingEndpointPatchWithTravellerQuery_Expect_EndparkingSuccess()
+        {
+            // Arrange
+            List<Spaceport> spacePorts = new List<Spaceport>
+            {
+                new Spaceport()
+                {
+                    ID = 1,
+                    PlanetName = "Tatooine",
+                    Name = "Mos Eisley"
+                }
+            };
+
+            List<Parking> testParkings = new List<Parking>
+            {
+                new Parking()
+                {
+                    ID = 1,
+                    Traveller = "Anakin Skywalker",
+                    StarShip = "Naboo fighter",
+                    Spaceport = spacePorts[0],
+                    StartTime = DateTime.Now.AddSeconds(-10)
+                },
+                new Parking()
+                {
+                    ID = 2,
+                    Traveller = "Han Solo",
+                    StarShip = "Millenium Falcon",
+                    Spaceport = spacePorts[0],
+                    StartTime = DateTime.Now.AddSeconds(-10)
+                },
+            };
+
+            TestParkingsRepository testParkingsrepo = new TestParkingsRepository(testParkings);
+            ISpaceportsRepository testSpaceportsRepo = new TestSpaceportsRepository(spacePorts);
+            var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo);
+
+            // Act
+            //var newParkings = parkingsController.PostParking(postParking).Result.Value;
+            var finishedParking = parkingsController.EndParking("Han Solo").Result.Value;
+
+            // Assert
+            Assert.NotNull(finishedParking.EndTime);
+            Assert.NotNull(finishedParking.TotalSum);
+        }
     }
 }
