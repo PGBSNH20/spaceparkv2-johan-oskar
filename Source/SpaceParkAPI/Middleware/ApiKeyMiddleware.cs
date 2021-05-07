@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using System;
 using System.Linq;
@@ -18,14 +19,15 @@ namespace SpaceParkAPI.Middleware
             _next = next;
         }
 
-        //public async Task InvokeAsync(HttpContext context, IConfiguration configuration)
         public async Task InvokeAsync(HttpContext context)
         {
+            // Read the API keys from appsettings.json.
             var ApiKeys = context.RequestServices.GetRequiredService<IConfiguration>().GetSection("ApiKeys").GetChildren().ToDictionary(c => c.Key, c => c.Value);
             string apiKeyVisitor;
             string apiKeyAdmin;
             StringValues headerApiKey;
 
+            // If either of the API keys can't be read from appsettings.json return with the status code 500 (Internal Server Error).
             if (ApiKeys.Count == 0
                 || !ApiKeys.TryGetValue("Visitor", out apiKeyVisitor)
                 || !ApiKeys.TryGetValue("Admin", out apiKeyAdmin))
@@ -37,7 +39,9 @@ namespace SpaceParkAPI.Middleware
                 return;
             }
 
+            // Read the apikey from the header and if it doesn't exist exit with the status code 401 (unauthorized).
             //if (context.Request.Headers.TryGetValue("apikey", out headerApiKey) && headerApiKey == "secret1234")
+            var header = context.Request.Headers;
             if (!context.Request.Headers.TryGetValue("apikey", out headerApiKey))
             {
                 context.Response.StatusCode = 401;
@@ -45,6 +49,7 @@ namespace SpaceParkAPI.Middleware
                 return;
             }
 
+            // Authenticate the api key we read from the header, and if the header key is valid call the request delegate "_next" and return.
             if (headerApiKey == apiKeyVisitor)
             {
                 if ((context.Request.Path.StartsWithSegments("/api/spaceports") && context.Request.Method == "GET")
@@ -63,19 +68,10 @@ namespace SpaceParkAPI.Middleware
                 return;
             }
 
+            // The apikey from the header wasn't valid, exit with 401 (Unauthorized).
             context.Response.StatusCode = 401;
             await context.Response.WriteAsync("(401 - Unauthorized)\nBad API key.");
             return;
-        }
-    }
-
-    public static class ApiKeyMiddlewareExtension
-    {
-        //public static IApplicationBuilder UseApiKeyMiddleware(this IApplicationBuilder builder, IConfiguration configuration)
-        public static IApplicationBuilder UseApiKeyMiddleware(this IApplicationBuilder builder)
-        {
-            //return builder.UseMiddleware<ApiKeyMiddleware>(configuration);
-            return builder.UseMiddleware<ApiKeyMiddleware>();
         }
     }
 }
