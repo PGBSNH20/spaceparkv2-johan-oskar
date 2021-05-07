@@ -122,6 +122,21 @@ namespace SpaceParkAPI.Controllers
             //return CreatedAtAction(nameof(GetParking), new { id = parking.ID }, parking);
         }
 
+        // PATCH: api/Parkings/5
+        [HttpPatch("[action]")]
+        [ActionName("Checkout")]
+        public async Task<ActionResult<Parking>> EndParking([FromQuery] string traveller)
+        {
+            var parking = await _parkingsRepository.EndParking(_context, traveller);
+
+            if (parking == null)
+            {
+                return NotFound();
+            }
+
+            return parking;
+        }
+
         // DELETE: api/Parkings/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteParking(int id)

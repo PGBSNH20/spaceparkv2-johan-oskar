@@ -5,6 +5,8 @@
 ########## GET ##########
 
 GET https://localhost:44360/api/Parkings
+# apikey: exampleKey1234
+apikey: apikey1234_admin
 
 ###
 
@@ -20,12 +22,29 @@ apikey: apikey1234_visitor
 # apikey: apikey1234_admin
 
 {
-    "Traveller":"Luke1",
-    "StarShip":"X-Wing1",
+    "Traveller":"Not Luke",
+    "StarShip":"Y-Wing",
     "SpaceportId":1
 }
 
 ###
+
+PUT https://localhost:44360/api/Parkings/Checkout/2
+Content-Type: application/json
+apikey: apikey1234_visitor
+# apikey: apikey1234_admin
+
+{
+}
+###
+
+HttpPatch https://localhost:44360/api/Parkings/Checkout?traveller=Luke1
+Content-Type: application/json
+apikey: apikey1234_visitor
+# apikey: apikey1234_admin
+
+{
+}
 
 DELETE https://localhost:44360/api/Parkings/1
 

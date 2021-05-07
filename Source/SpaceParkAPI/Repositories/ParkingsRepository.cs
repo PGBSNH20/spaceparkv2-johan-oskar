@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SpaceParkAPI.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SpaceParkAPI.Repositories
@@ -25,6 +27,30 @@ namespace SpaceParkAPI.Repositories
             await context.SaveChangesAsync();
 
             return parking;
+        }
+
+        public async Task<Parking> EndParking(SpaceParkContext context, string travellerName)
+        {
+            var activeParking = await context.Parkings
+                .Include(parking => parking.Spaceport)
+                .SingleOrDefaultAsync(parking => parking.Traveller == travellerName && parking.EndTime == null);
+
+            if (activeParking == null)
+            {
+                return null;
+            }
+
+            activeParking.EndTime = DateTime.Now;
+
+            var duration = activeParking.EndTime - activeParking.StartTime;
+            if (duration.HasValue)
+            {
+                // cost = 2 credits / minute
+                activeParking.TotalSum = Convert.ToDecimal(duration.Value.TotalMinutes) * 2; 
+            }
+
+            context.SaveChanges();
+            return activeParking;
         }
     }
 }
