@@ -6,7 +6,7 @@ Data is return in JSON string.
 
 ### Parkings
 **GET** /api/Parkings  
-Get all parking rows/entities from the database.
+Get all parking rows/entities from the database.  
 Example (Rest Client):  
 ```
 GET https://localhost:44360/api/Parkings
@@ -27,7 +27,7 @@ apikey: apikey1234_visitor
 ```
 **GET** ​/api​/Parkings​/Ended  
 Query parameter: traveller (string)  
-Get all parking rows/entities from the database.
+Get all parking rows/entities from the database.  
 Example (Rest Client):
 ```
 GET https://localhost:44360​/api​/Parkings​/Ended?traveller=Luke Skywalker
@@ -35,7 +35,7 @@ apikey: apikey1234_visitor
 ```
 **GET** /api/Parkings/{id}  
 Path parameter: id (int)
-Find and return a {parking} entity with the specified {id} from the database. If no entity can be found, then {null} is returned.
+Find and return a {parking} entity with the specified {id} from the database. If no entity can be found, then {null} is returned.  
 Example (Rest Client):
 ```
 GET https://localhost:44360/api/Parkings/1
@@ -55,7 +55,7 @@ apikey: apikey1234_visitor
 ```
 ### People
 **GET** /api/People  
-Returns all travellers allowed to park in any Spaceport.
+Returns all travellers allowed to park in any Spaceport.  
 Example (Rest Client):
 ```
 GET https://localhost:44360​/api/People
@@ -63,7 +63,7 @@ apikey: apikey1234_visitor
 ```
 **GET** /api/People/{id}  
 Path parameter: id (int)
-Returns a single traveller based on supplied id.
+Returns a single traveller based on supplied id.  
 Example (Rest Client):
 ```
 GET https://localhost:44360​/api/People/1
@@ -71,7 +71,7 @@ apikey: apikey1234_visitor
 ```
 ### Spaceports
 **GET** /api/Spaceports  
-Returns all Spaceports.
+Returns all Spaceports.  
 Example (Rest Client):
 ```
 GET https://localhost:44360​/api/Spaceports
@@ -79,7 +79,7 @@ apikey: apikey1234_visitor
 ```
 **POST** /api/Spaceports  
 Creates new Spceport. New spaceport name (string) need to be provided in the request body.  
-Administrator API-Key is required.
+Administrator API-Key is required.  
 Example (Rest Client):
 ```
 POST https://localhost:44360/api/Spaceports
@@ -92,7 +92,7 @@ apikey: apikey1234_admin
 ```
 **GET** /api/Spaceports/{id}
 Path parameter: id (int)
-Returns a single spaceport based on supplied id.
+Returns a single spaceport based on supplied id.  
 Example (Rest Client):
 ```
 GET https://localhost:44360​/api/Spaceports/1
@@ -100,7 +100,7 @@ apikey: apikey1234_visitor
 ```
 ### Starships
 **GET** /api/Starships
-Returns all starships assocciated with visitors allowed to park in any Starport.
+Returns all starships assocciated with visitors allowed to park in any Starport.  
 Example (Rest Client):
 ```
 GET https://localhost:44360​/api/Starships/
@@ -108,7 +108,7 @@ apikey: apikey1234_visitor
 ```
 **GET** /api/Starships/{id}
 Path parameter: id (int)
-Returns a single starships based on supplied id.
+Returns a single starships based on supplied id.  
 Example (Rest Client):
 ```
 GET https://localhost:44360​/api/Starships/1
