@@ -11,63 +11,8 @@ using Xunit;
 
 namespace SpaceParkTest.Tests
 {
-    #region TestData
-    internal class TestData
-    {
-        internal static DateTime DateTimeNow { get; } = DateTime.Now;
-
-        internal static Spaceport GetSingleSpaceport()
-        {
-            return new Spaceport()
-            {
-                ID = 1,
-                PlanetName = "Tatooine",
-                Name = "Mos Eisley"
-            };
-        }
-
-        internal static List<Spaceport> SingleSpaceportInList()
-        {
-            return new List<Spaceport>
-            {
-                new Spaceport()
-                {
-                    ID = 1,
-                    PlanetName = "Tatooine",
-                    Name = "Mos Eisley"
-                }
-            };
-        }
-
-        internal static List<Parking> GetTwoParkingsInList()
-        {
-            return new List<Parking>
-            {
-                new Parking()
-                {
-                    ID = 1,
-                    Traveller = "Anakin Skywalker",
-                    StarShip = "Naboo fighter",
-                    Spaceport = GetSingleSpaceport(),
-                    StartTime = TestData.DateTimeNow.AddMinutes(-1)
-                },
-                new Parking()
-                {
-                    ID = 2,
-                    Traveller = "Han Solo",
-                    StarShip = "Millenium Falcon",
-                    Spaceport = GetSingleSpaceport(),
-                    StartTime = TestData.DateTimeNow.AddSeconds(-10)
-                },
-            };
-        }
-    }
-    #endregion
-
-    #region Tests
     public class ParkingsControllerTest
     {
-
         [Fact]
         public void On_ParkingEndpointGetMethod_Expect_AllParkings()
         {
@@ -138,7 +83,7 @@ namespace SpaceParkTest.Tests
             var actualParkings = parkingsController.GetEndedForTraveller(testParkings[0].Traveller).Result.Value;
 
             // Assert
-            Assert.True(Compare.CompareObjects(expectedParkings, actualParkings));
+            Assert.True(Compare.Equivalent(expectedParkings, actualParkings));
         }
 
         [Fact]
@@ -310,5 +255,4 @@ namespace SpaceParkTest.Tests
             Assert.NotNull(finishedParking.TotalSum);
         }
     }
-    #endregion
 }
