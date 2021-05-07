@@ -14,6 +14,11 @@
             Get all parking rows/entities from the database.
             </summary>
         </member>
+        <member name="M:SpaceParkAPI.Controllers.ParkingsController.GetActiveForTraveller(System.String)">
+            <summary>
+            Get all parking rows/entities from the database.
+            </summary>
+        </member>
         <member name="M:SpaceParkAPI.Controllers.ParkingsController.GetParking(System.Int32)">
             <summary>
             Find and return a {parking} entity with the specified {id} from the database.
@@ -21,6 +26,6 @@
             </summary>
             <param name="id">The {id} of requested {parking} entity.</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpaceParkAPI.SWAPI.Controllers.PeopleController.Get(System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:SpaceParkAPI.SWAPI.Controllers.PeopleController.Get(System.String)" -->
     </members>
 </doc>
