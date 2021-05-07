@@ -10,16 +10,16 @@ namespace SpaceParkTest.Repositories
 {
     class TestSpaceportsRepository : ISpaceportsRepository
     {
-        public IEnumerable<Spaceport> Spaceports { get; } // readonly set
+        public List<Spaceport> Spaceports { get; } // readonly set
 
-        public TestSpaceportsRepository(IEnumerable<Spaceport> spaceports)
+        public TestSpaceportsRepository(List<Spaceport> spaceports)
         {
             Spaceports = spaceports;
         }
 
-        public Task<IEnumerable<Spaceport>> GetAllSpaceports(SpaceParkContext context)
+        public Task<List<Spaceport>> GetAllSpaceports(SpaceParkContext context)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(Spaceports);
         }
 
         public Task<Spaceport> GetSpaceport(SpaceParkContext context, int id)
@@ -29,7 +29,9 @@ namespace SpaceParkTest.Repositories
 
         public Task<Spaceport> AddSpaceport(SpaceParkContext context, Spaceport spaceport)
         {
-            throw new NotImplementedException();
+            Spaceports.Add(spaceport);
+
+            return Task.FromResult(spaceport);
         }
     }
 }
