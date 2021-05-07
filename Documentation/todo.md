@@ -1,7 +1,10 @@
 * [x] API key
-    * [] specific API key for user
-    * [] specific API key for admin
+    * [x] specific API key for user
+    * [x] specific API key for admin
 * Finish `Parkings` Controller & API (finished?)
+    * [] Get information on current parking
+    * [] Get information on all previous parkings
+    * [] End active parking & "pay"
 * Finish `SpacePorts` Controller & API
 * SWAPI Controllers & API?
     * `Person` Controller & API
@@ -15,18 +18,23 @@
 * Tests
     * `Parkings`
         * `POST /parkings`
-            * success
+            * [x] success
             * fail
         * `GET /parkings` (get all)
-            * success
+            * [x] success
             * fail
         * `GET /parkings/2` (single)
-            * success
+            * [x] success
             * fail
         * `PUT /parkings/2` and/or `PATCH /parkings/2`
             * success
             * fail
-    * `SpacePorts`
+    
+    * `Parkings/CheckOut/2`
+        * `GET`
+    
+    * `EndParkings/`
+    * `Spaceports`
         * `POST /parkings`
             * success
             * fail
