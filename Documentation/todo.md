@@ -15,16 +15,44 @@
 * Tests
     * `Parkings`
         * `POST /parkings`
+            * success
+            * fail
         * `GET /parkings` (get all)
+            * success
+            * fail
         * `GET /parkings/2` (single)
+            * success
+            * fail
         * `PUT /parkings/2` and/or `PATCH /parkings/2`
+            * success
+            * fail
     * `SpacePorts`
         * `POST /parkings`
+            * success
+            * fail
         * `GET /parkings` (get all)
+            * success
+            * fail
         * `GET /parkings/2` (single)
+            * success
+            * fail
         * `PUT /parkings/2` and/or `PATCH /parkings/2`
+            * success
+            * fail
     * `People` (swapi)
+        * `GET /people` (get all)
+            * success
+            * fail
+        * `GET /people/2` (single)
+            * success
+            * fail
     * `Starships` (swapi)
+        * `GET /starships` (get all)
+            * success
+            * fail
+        * `GET /starships/2` (single)
+            * success
+            * fail
 * Input Validation
 * Documentation
 * Presentation
