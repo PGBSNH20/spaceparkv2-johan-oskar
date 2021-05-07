@@ -129,10 +129,10 @@ apikey: apikey1234_visitor
 
 ########## GET ##########
 
-GET https://localhost:44360/api/Starships
+GET https://localhost:44360/api/Starships/All
 apikey: apikey1234_visitor
 
 ###
 
-GET https://localhost:44360/api/starships?search=Millennium Falcon
+GET https://localhost:44360/api/starships?name=Millennium Falcon
 apikey: apikey1234_visitor

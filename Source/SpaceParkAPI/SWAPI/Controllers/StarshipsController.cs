@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SpaceParkAPI.swapi.Repositories;
 using SpaceParkAPI.SWAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SpaceParkAPI.SWAPI.Controllers
 {
@@ -13,26 +12,26 @@ namespace SpaceParkAPI.SWAPI.Controllers
     [ApiController]
     public class StarshipsController : ControllerBase
     {
+        private IStarshipsRepository _starshipsRepository;
+
+        public StarshipsController(IStarshipsRepository starshipsRepository)
+        {
+            _starshipsRepository = starshipsRepository;
+        }
+
         // GET: api/<StarshipsController>
         [HttpGet("[action]")]
         [ActionName("All")]
-        public ActionResult<IEnumerable<Starship>> Get()
+        public async Task<ActionResult<IEnumerable<Starship>>> Get()
         {
-            return Fetch.Starships().Result;
+            return await _starshipsRepository.GetAllStarships();
         }
 
         // GET api/<StarshipsController>/5
         [HttpGet]
-        public ActionResult<Starship> Get([FromQuery] string name)
+        public async Task<ActionResult<Starship>> Get([FromQuery] string name)
         {
-            var starship = Fetch.Starships(name).Result.FirstOrDefault();
-
-            if (starship == null)
-            {
-                return NotFound();
-            }
-
-            return starship;
+            return (await _starshipsRepository.GetStarship(name)).Value;
         }
     }
 }

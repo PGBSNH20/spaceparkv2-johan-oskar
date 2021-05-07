@@ -2,7 +2,7 @@
 
 
 ## How to use the API
-Data is return in JSON string.
+Data is returned as JSON.
 
 ### Parkings
 **GET** /api/Parkings  
