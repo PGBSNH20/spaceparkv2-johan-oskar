@@ -3,6 +3,7 @@ using SpaceParkAPI.APIModels;
 using SpaceParkAPI.Controllers;
 using SpaceParkAPI.Models;
 using SpaceParkAPI.Repositories;
+using SpaceParkAPI.swapi.Repositories;
 using SpaceParkTest.Helpers;
 using SpaceParkTest.Repositories;
 using System;
@@ -45,7 +46,7 @@ namespace SpaceParkTest.Tests
             };
 
             IParkingsRepository testRepo = new TestParkingsRepository(testParkings);
-            var parkingsController = new ParkingsController(null, testRepo, null);
+            var parkingsController = new ParkingsController(null, testRepo, null, null);
 
             // Act
             var actualParkings = parkingsController.GetParkings().Result.Value;
@@ -70,7 +71,7 @@ namespace SpaceParkTest.Tests
 
             // Init our tests repository and add our "entities" / test data.
             IParkingsRepository testRepo = new TestParkingsRepository(testParkings);
-            var parkingsController = new ParkingsController(null, testRepo, null);
+            var parkingsController = new ParkingsController(null, testRepo, null, null);
 
             // Act
             var actualParkings = parkingsController.GetEndedForTraveller(testParkings[0].Traveller).Result.Value;
@@ -111,7 +112,7 @@ namespace SpaceParkTest.Tests
             };
 
             IParkingsRepository testRepo = new TestParkingsRepository(testParkings);
-            var parkingsController = new ParkingsController(null, testRepo, null);
+            var parkingsController = new ParkingsController(null, testRepo, null, null);
 
             // Act
             var actualParkings = parkingsController.GetParking(2).Result.Value;
@@ -137,13 +138,13 @@ namespace SpaceParkTest.Tests
             PostParking postParking = new()
             {
                 Traveller = "Anakin Skywalker",
-                StarShip = "Naboo fighter",
+                Starship = "Naboo fighter",
                 SpaceportId = spacePorts[0].ID
             };
 
             TestParkingsRepository testParkingsrepo = new(null);
             ISpaceportsRepository testSpaceportsRepo = new TestSpaceportsRepository(spacePorts);
-            var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo);
+            var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo, null);
 
             // Act
             //var newParkings = parkingsController.PostParking(postParking).Result.Value;
@@ -152,7 +153,7 @@ namespace SpaceParkTest.Tests
             // Assert
             Assert.IsType<Parking>(newParking);
             Assert.Equal(postParking.Traveller, ((Parking)newParking).Traveller);
-            Assert.Equal(postParking.StarShip, ((Parking)newParking).StarShip);
+            Assert.Equal(postParking.Starship, ((Parking)newParking).StarShip);
             Assert.Equal(postParking.SpaceportId, ((Parking)newParking).Spaceport.ID);
 
         }
@@ -185,13 +186,13 @@ namespace SpaceParkTest.Tests
             PostParking postParking = new()
             {
                 Traveller = "Anakin Skywalker",
-                StarShip = "Naboo fighter",
+                Starship = "Naboo fighter",
                 SpaceportId = spacePorts[0].ID
             };
 
             TestParkingsRepository testParkingsrepo = new(testParkings);
             ISpaceportsRepository testSpaceportsRepo = new TestSpaceportsRepository(spacePorts);
-            var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo);
+            var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo, null);
 
             // Act
             //var newParkings = parkingsController.PostParking(postParking).Result.Value;
@@ -232,7 +233,7 @@ namespace SpaceParkTest.Tests
 
             TestParkingsRepository testParkingsrepo = new(testParkings);
             ISpaceportsRepository testSpaceportsRepo = new TestSpaceportsRepository(spacePorts);
-            var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo);
+            var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo, null);
 
             // Act
             //var newParkings = parkingsController.PostParking(postParking).Result.Value;

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using SpaceParkAPI.APIModels;
 using SpaceParkAPI.Models;
 using SpaceParkAPI.Repositories;
+using SpaceParkAPI.swapi.Repositories;
 using SpaceParkAPI.SWAPI;
 
 namespace SpaceParkAPI.Controllers
@@ -20,13 +21,15 @@ namespace SpaceParkAPI.Controllers
         private readonly SpaceParkContext _context;
         private readonly IParkingsRepository _parkingsRepository;
         private readonly ISpaceportsRepository _spaceportsRepository;
+        private readonly IStarshipsRepository _starshipsRepository;
         //private readonly ILogger _logger; // från Stephans genomgång 2021-04-30
 
-        public ParkingsController(SpaceParkContext context, IParkingsRepository parkingsRepository, ISpaceportsRepository spaceportsRepository)
+        public ParkingsController(SpaceParkContext context, IParkingsRepository parkingsRepository, ISpaceportsRepository spaceportsRepository, IStarshipsRepository starshipsRepository)
         {
             _context = context;
             _parkingsRepository = parkingsRepository;
             _spaceportsRepository = spaceportsRepository;
+            _starshipsRepository = starshipsRepository;
         }
 
         /// <summary>
@@ -115,20 +118,28 @@ namespace SpaceParkAPI.Controllers
                 return NotFound("There is no spaceport with that {id}.");
             }
 
+            //var swapiStarship = (await Fetch.Starships(postParking.Starship)).FirstOrDefault();
+            var swapiStarship = _starshipsRepository.GetStarship(postParking.Starship).Result.Value;
+
+            if (!int.TryParse(swapiStarship.Length, out int starshipLength) || starshipLength > spaceport.MaxStarshipLength)
+            {
+                return BadRequest("The starships length is invalid or the starship is too long.");
+            }
+
+            if (swapiStarship == null)
+            {
+                return NotFound("There is no Star Wars starship with that name. Use the \"/Starships\" endpoint to get a list of all starships. See the documentation for more details.");
+            }
+
             if ((await Fetch.People(postParking.Traveller)).Count == 0)
             {
                 return NotFound("There is no Star Wars character with that name. Use the \"/People\" endpoint to get a list of all characters or to find a specific character. See the documentation for more details.");
             }
 
-            if ((await Fetch.Starships(postParking.StarShip)).Count == 0)
-            {
-                return NotFound("There is no Star Wars starship with that name. Use the \"/Starships\" endpoint to get a list of all starships. See the documentation for more details.");
-            }
-
             var newParking = new Parking
             {
                 Traveller = postParking.Traveller,
-                StarShip = postParking.StarShip,
+                StarShip = postParking.Starship,
                 Spaceport = spaceport
             };
 

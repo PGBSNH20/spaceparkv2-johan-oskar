@@ -11,7 +11,7 @@ namespace SpaceParkAPI.APIModels
         [Required]
         public string Traveller { get; set; }
         [Required]
-        public string StarShip { get; set; }
+        public string Starship { get; set; }
         [Required]
         public int SpaceportId { get; set; }
     }
