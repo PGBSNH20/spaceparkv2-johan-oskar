@@ -31,9 +31,9 @@ namespace SpaceParkAPI.SWAPI.Controllers
 
         // GET api/<PeopleController>/5
         /// <summary>
-        /// Test comment <PeopleController>/5
+        /// 
         /// </summary>
-        /// <param name="name">Id of person in the Star Wars API</param>
+        /// <param name="name">The name to search for on the "/people"-endpoint in the Star Wars API </param>
         /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<Person>> Get([FromQuery] string name)

@@ -16,7 +16,7 @@ namespace SpaceParkAPI.Controllers
     public class SpaceportsController : ControllerBase
     {
         private readonly SpaceParkContext _context;
-        private ISpaceportsRepository _spaceportRepository;
+        private readonly ISpaceportsRepository _spaceportRepository;
 
         public SpaceportsController(SpaceParkContext context, ISpaceportsRepository spaceportsRepository)
         {

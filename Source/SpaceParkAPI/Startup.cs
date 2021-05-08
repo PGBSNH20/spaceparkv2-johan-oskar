@@ -5,10 +5,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using SpaceParkAPI.Middleware;
 using SpaceParkAPI.Models;
 using SpaceParkAPI.Repositories;
+using SpaceParkAPI.Swagger;
 using SpaceParkAPI.swapi.Repositories;
 using System.Collections.Generic;
 using System.IO;
@@ -33,6 +35,7 @@ namespace SpaceParkAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SpaceParkAPI", Version = "v1" });
                 c.IncludeXmlComments(Path.Combine(System.AppContext.BaseDirectory, "SpaceParkAPI.xml"));
+                c.OperationFilter<HeaderFilter>();
             });
             services.AddSingleton<IParkingsRepository, ParkingsRepository>();
             services.AddSingleton<ISpaceportsRepository, SpaceportsRepository>();
@@ -51,15 +54,10 @@ namespace SpaceParkAPI
             }
 
             app.UseHttpsRedirection();
-
-            app.UseApiKeyMiddleware();
-
+            app.UseMiddleware<ApiKeyMiddleware>();
             app.UseRouting();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }

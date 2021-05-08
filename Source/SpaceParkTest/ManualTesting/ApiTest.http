@@ -43,7 +43,7 @@ apikey: apikey1234_visitor
 
 {
     "Traveller":"Han Solo",
-    "StarShip":"Millennium Falcon",
+    "Starship":"Millennium Falcon",
     "SpaceportId":1
 }
 
