@@ -14,6 +14,11 @@ namespace SpaceParkAPI.Swagger
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
+            if (context.ApiDescription.RelativePath.ToLower().Contains("teapot"))
+            {
+                return;
+            }
+
             if (operation.Parameters == null)
             {
                 operation.Parameters = new List<OpenApiParameter>();
