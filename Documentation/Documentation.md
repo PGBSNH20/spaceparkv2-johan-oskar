@@ -15,6 +15,11 @@
 </pre>
 <h1 style="font-family: consolas;font-weight:bold;letter-spacing:0px"><span style="display:inline-block;transform:scaleX(1) translateX(2px);"><i style="display:inline-block;transform:scaleX(1.3);">S</i>TAR</span><br>WAR<i style="display:inline-block;transform:scaleX(1.3);">S</i></h1>
 
+<div style="position:fixed;top:10px;right:10px;background-color:rgba(0,0,0,.3);padding:10px 10px 1px;color:black;">
+
+[Go to top of document](#Documentation)
+</div>
+
 # Documentation
 
 ## Table of contents
@@ -39,8 +44,15 @@ We began by discussing
 [Go to top of document](#Documentation)
 
 ### **SpaceParkConsole**
+```csharp
+throw new NotImplementedException();
+```
+
 ---
-### **SpaceParkAPI**
+
+### SpaceParkAPI
+[Go to top of document](#Documentation)
+
 - ### _Properties/_
     - ### launchSettings.json
 - ### _APIModels/_
@@ -90,7 +102,9 @@ We began by discussing
         > I'm a teapot.
 - ### _Middleware/_
     - ### `class ApiKey` (ApiKey.cs)
-        > Unused/incomplete
+        ```csharp
+        throw new NotImplementedException();
+        ```
 
 - ### _Migrations/_
     > Entity Framework Core migrations
@@ -176,54 +190,20 @@ We began by discussing
         services.AddSingleton<IPeopleRepository, PeopleRepository>();
         services.AddSingleton<IStarshipsRepository, StarshipsRepository>();
         ```
+
 ---
-### **SpaceParkTest**
-
-<br>
----
----
-### **SpaceParkAPI**
-
-### Properties/
-### --- launchSettings.json
-### APIModels/
-### --- PostParking.cs
-### --- PostSpaceport.cs
-### Controllers/
-### --- ParkingsController.cs
-### --- SpaceportsController.cs
-### Middleware/
-<div style="margin-left:20px">
-
-### <u>ApiKey.cs</u>
-
-Not completed
-
-```csharp
-class
-```
-</div>
-
-
-#### Migrations/
-#### Models/
-#### Repositories/
-#### Swagger/
-#### swapi/
-#### appsettings.json
-#### Dockerfile
-#### Program.cs
-#### SpaceParkAPI.xml
-#### Startup.cs
-
-### SpaceParkAPI
-[Go to top of document](#Documentation)
 
 ### SpaceParkTest
 [Go to top of document](#Documentation)
 
+> todo
+
 ## API documentation
 [Go to top of document](#Documentation)
 
+> todo
+
 ## Sources & Credits
 [Go to top of document](#Documentation)
+
+- [Jakob Kallin](https://jakobkallin.com/) creator of `ShowMenu()` (used in `SpaceParkConsole`)
