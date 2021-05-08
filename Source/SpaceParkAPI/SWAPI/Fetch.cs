@@ -22,7 +22,7 @@ namespace SpaceParkAPI.SWAPI
             {
                 var client = new RestClient(_baseURL);
                 APIResponse<T> response;
-                List<T> result = new List<T>();
+                List<T> result = new();
 
                 while (requestUrl != null)
                 {

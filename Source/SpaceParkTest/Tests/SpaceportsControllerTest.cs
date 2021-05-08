@@ -55,7 +55,6 @@ namespace SpaceParkTest.Tests
         public void On_PostMethod_With_SpaceportName_Expect_NewSpaceport()
         {
             // Arrange
-            var indexToTest = 1;
             var spaceports = TestData.GetListofTwoSpaceports();
 
             PostSpaceport postSpaceport = new()
