@@ -21,7 +21,7 @@ namespace SpaceParkAPI.swapi.Repositories
         }
 
 
-        public async Task<ActionResult<Person>> GetPerson(string name)
+        public async Task<Person> GetPerson(string name)
         {
             return (await Fetch.People(name)).FirstOrDefault();
         }

@@ -38,7 +38,7 @@ namespace SpaceParkAPI.SWAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<Person>> Get([FromQuery] string name)
         {
-            var person = (await _peopleRepository.GetPerson(name)).Value;
+            var person = (await _peopleRepository.GetPerson(name));
 
             if (person == null)
             {

@@ -23,10 +23,9 @@ namespace SpaceParkTest.Repositories
             return Task.FromResult(People);
         }
 
-        public Task<ActionResult<Person>> GetPerson(string name)
+        public Task<Person> GetPerson(string name)
         {
-            var person = Task.FromResult(People.SingleOrDefault(p => p.Name == name));
-            return person;
+            return Task.FromResult(People.SingleOrDefault(p => p.Name == name));
         }
     }
 }
