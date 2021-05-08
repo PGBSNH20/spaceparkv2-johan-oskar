@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SpaceParkAPI.swapi.Repositories;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,13 +14,19 @@ namespace SpaceParkAPI.SWAPI.Controllers
     [ApiController]
     public class PeopleController : ControllerBase
     {
+        private IPeopleRepository _peopleRepository;
+
+        public PeopleController(IPeopleRepository peopleRepository)
+        {
+            _peopleRepository = peopleRepository;
+        }
+
         // GET: api/<PeopleController>
         [HttpGet("[action]")]
         [ActionName("All")]
-        public ActionResult<IEnumerable<Person>> GetAll()
+        public async Task<ActionResult<IEnumerable<Person>>> Get()
         {
-            // todo: error handling
-            return Fetch.People().Result;
+            return await _peopleRepository.GetAllPersons();
         }
 
         // GET api/<PeopleController>/5
@@ -29,9 +36,9 @@ namespace SpaceParkAPI.SWAPI.Controllers
         /// <param name="name">The name to search for on the "/people"-endpoint in the Star Wars API </param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<Person> Get([FromQuery] string name)
+        public async Task<ActionResult<Person>> Get([FromQuery] string name)
         {
-            var person = Fetch.People(name).Result.FirstOrDefault();
+            var person = (await _peopleRepository.GetPerson(name)).Value;
 
             if (person == null)
             {

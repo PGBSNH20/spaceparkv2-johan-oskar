@@ -10,6 +10,20 @@ namespace SpaceParkAPI.swapi.Repositories
 {
     public class PeopleRepository : IPeopleRepository
     {
+        //public async Task<List<Person>> GetAllPersons()
+        //{
+        //    return await Fetch.People();
+        //}
 
+        public async Task<List<Person>> GetAllPersons()
+        {
+            return await Fetch.People();
+        }
+
+
+        public async Task<ActionResult<Person>> GetPerson(string name)
+        {
+            return (await Fetch.People(name)).FirstOrDefault();
+        }
     }
 }

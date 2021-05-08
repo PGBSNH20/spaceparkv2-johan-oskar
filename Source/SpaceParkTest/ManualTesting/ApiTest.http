@@ -120,7 +120,7 @@ apikey: apikey1234_visitor
 
 ###
 
-GET https://localhost:44360/api/People?name=Luke Skywalker
+GET https://localhost:44360/api/People?name=Darth Vader
 apikey: apikey1234_visitor
 
 ###############################
@@ -128,6 +128,11 @@ apikey: apikey1234_visitor
 ###############################
 
 ########## GET ##########
+
+GET https://localhost:44360/api/Starships
+apikey: apikey1234_visitor
+
+###
 
 GET https://localhost:44360/api/Starships/All
 apikey: apikey1234_visitor
