@@ -8,6 +8,6 @@ namespace SpaceParkAPI.swapi.Repositories
     public interface IPeopleRepository
     {
         Task<List<Person>> GetAllPersons();
-        Task<ActionResult<Person>> GetPerson(string name);
+        Task<Person> GetPerson(string name);
     }
 }
