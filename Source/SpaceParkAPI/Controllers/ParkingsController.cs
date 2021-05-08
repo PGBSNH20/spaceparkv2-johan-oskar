@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -121,7 +122,9 @@ namespace SpaceParkAPI.Controllers
             //var swapiStarship = (await Fetch.Starships(postParking.Starship)).FirstOrDefault();
             var swapiStarship = _starshipsRepository.GetStarship(postParking.Starship).Result;
 
-            if (!int.TryParse(swapiStarship.Length, out int starshipLength) || starshipLength > spaceport.MaxStarshipLength)
+            //Added this line to Parse double values to not mix "." and ","
+            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+            if (!double.TryParse(swapiStarship.Length, out double starshipLength) || starshipLength > spaceport.MaxStarshipLength)
             {
                 return BadRequest("The starships length is invalid or the starship is too long.");
             }
