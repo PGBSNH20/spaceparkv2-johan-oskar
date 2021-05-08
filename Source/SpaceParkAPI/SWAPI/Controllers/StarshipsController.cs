@@ -31,7 +31,7 @@ namespace SpaceParkAPI.SWAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<Starship>> Get([FromQuery] string name)
         {
-            return (await _starshipsRepository.GetStarship(name)).Value;
+            return (await _starshipsRepository.GetStarship(name));
         }
     }
 }

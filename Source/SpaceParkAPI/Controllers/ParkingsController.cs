@@ -119,7 +119,7 @@ namespace SpaceParkAPI.Controllers
             }
 
             //var swapiStarship = (await Fetch.Starships(postParking.Starship)).FirstOrDefault();
-            var swapiStarship = _starshipsRepository.GetStarship(postParking.Starship).Result.Value;
+            var swapiStarship = _starshipsRepository.GetStarship(postParking.Starship).Result;
 
             if (!int.TryParse(swapiStarship.Length, out int starshipLength) || starshipLength > spaceport.MaxStarshipLength)
             {

@@ -15,7 +15,7 @@ namespace SpaceParkAPI.swapi.Repositories
             return await Fetch.Starships();
         }
 
-        public async Task<ActionResult<Starship>> GetStarship(string name)
+        public async Task<Starship> GetStarship(string name)
         {
             var test = (await Fetch.Starships(name));
             return test.FirstOrDefault();

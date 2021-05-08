@@ -8,6 +8,6 @@ namespace SpaceParkAPI.swapi.Repositories
     public interface IStarshipsRepository
     {
         Task<List<Starship>> GetAllStarships();
-        Task<ActionResult<Starship>> GetStarship(string name);
+        Task<Starship> GetStarship(string name);
     }
 }
