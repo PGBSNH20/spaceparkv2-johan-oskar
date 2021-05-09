@@ -24,6 +24,7 @@ This is the first project in the course "Webbutveckling Backend" in the ".NET Ut
 ## Table of contents
 - [The assignment's specification](#The-assignment-Specification)
 - [Process](#Process)
+- [How to Use & Install](#How-to-Use-&-Install)
 - [Code Structure](#Code-Structure)
   - [SpaceParkAPI](#SpaceParkAPI)
   - [SpaceParkTest](#SpaceParkTest)
@@ -51,14 +52,30 @@ We began by creating some basic [User Stories](UserStories.md) and by designing 
 Using this we could implement some the `Parking` and `Spaceport` models and the `API Controller` for the former.
 
 
+## How to Use & Install
+##### [Go to top of document](#Documentation)
+
+> The following assumes that you have Docker Desktop, Visual Studio 2019 installed and (.NET 5, ASP.NET 5)
+
+To build and use the API:
+- Clone the repository
+- Open `Source/SpacePark.sln` and build the solution.
+- In `Source/`, start the database with `docker-compose up`.
+- In visual studio's Nuget's Package Manager Console, apply the migrations with `Update-Database`
+- In Visual Studio, start the `SpaceParkAPI` project.
+- Using `Rest Client`, SwaggerUI or Postman, make API requests.
+- Eat cake, you're a teapot (maybe).
+
 
 ## Code structure
 ##### [Go to top of document](#Documentation)
+
 
 ### **SpaceParkConsole**
 ```csharp
 throw new NotImplementedException();
 ```
+
 
 ### SpaceParkAPI
 ##### [Go to top of document](#Documentation)
