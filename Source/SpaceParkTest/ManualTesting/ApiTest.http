@@ -20,9 +20,51 @@ GET https://localhost:44360/api/Parkings/Active
 Content-Type: application/json
 apikey: apikey1234_visitor
 
+##########################################################
+### fungerar #############################################
+
+POST https://localhost:44360/api/Parkings
+Content-Type: application/json
+apikey: apikey1234_visitor
+# apikey: apikey1234_admin
+
+{
+    "Traveller":"Luke Skywalker",
+    "Starship":"X-Wing",
+    "SpaceportId":2
+}
+### fungerar inte ########################################
+POST https://localhost:44360/api/Parkings
+Content-Type: application/json
+apikey: apikey1234_visitor
+# apikey: apikey1234_admin
+
+{
+    "Traveller":"Luke Skywalker",
+    "Starship":"X-Wing",
+    "SpaceportId":2
+}​​​​​​​​
+
+##########################################################
+##########################################################
+
+POST https://localhost:44360/api/Parkings
+Content-Type: application/json
+apikey: apikey1234_visitor
+# apikey: apikey1234_admin
+
+{
+    "Traveller":"R2D2",
+    "Starship":"Millennium Falcon",
+    "SpaceportId":2
+}
 ###
 
-GET https://localhost:44360/api/Parkings/Active?traveller=Luke
+GET https://localhost:44360/api/Parkings/Active?traveller=Luke Skywalker
+apikey: apikey1234_visitor
+###
+
+GET https://localhost:44360/api/Parkings/Active?traveller=Han Solo
 Content-Type: application/json
 apikey: apikey1234_visitor
 # apikey: apikey1234_admin
@@ -36,16 +78,6 @@ apikey: apikey1234_visitor
 
 ###
 
-POST https://localhost:44360/api/Parkings
-Content-Type: application/json
-apikey: apikey1234_visitor
-# apikey: apikey1234_admin
-
-{
-    "Traveller":"Han Solo",
-    "Starship":"Millennium Falcon",
-    "SpaceportId":1
-}
 
 ###
 

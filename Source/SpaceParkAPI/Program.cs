@@ -14,9 +14,6 @@ namespace SpaceParkAPI
     {
         public static void Main(string[] args)
         {
-            //Added this line to Parse double values to not mix "." and ","
-            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-
             CreateHostBuilder(args).Build().Run();
         }
 

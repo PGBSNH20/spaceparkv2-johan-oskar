@@ -10,9 +10,11 @@ namespace SpaceParkAPI.Models
     {
         public DbSet<Parking> Parkings { get; set; }
         public DbSet<Spaceport> Spaceports { get; set; }
+
         public SpaceParkContext(DbContextOptions<SpaceParkContext> options) : base(options)
         {
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Parking>()
