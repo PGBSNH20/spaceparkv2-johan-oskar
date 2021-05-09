@@ -1,5 +1,12 @@
 # How to use SpacePark API
-All data is returned as JSON format.
+Data is returned in JSON format.
+
+Endpoints:
+* Parkings
+* People
+* Spaceports
+* Starships
+<br/>
 
 ## PARKINGS
 <br/>
