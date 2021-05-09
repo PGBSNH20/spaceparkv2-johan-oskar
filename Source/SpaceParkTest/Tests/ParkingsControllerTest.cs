@@ -4,6 +4,7 @@ using SpaceParkAPI.Controllers;
 using SpaceParkAPI.Models;
 using SpaceParkAPI.Repositories;
 using SpaceParkAPI.swapi.Repositories;
+using SpaceParkAPI.SWAPI.Models;
 using SpaceParkTest.Helpers;
 using SpaceParkTest.Repositories;
 using System;
@@ -84,11 +85,23 @@ namespace SpaceParkTest.Tests
         public void On_ParkingEndpointGetMethodWithId_Expect_SingleParking()
         {
             // Arrange
-            Spaceport testSpaceport = new()
+            List<Spaceport> testSpaceports = new()
+            {
+                new Spaceport()
+                {
+                    ID = 1,
+                    PlanetName = "Tatooine",
+                    Name = "Mos Eisley",
+                    MaxStarshipLength = 250
+                }
+            };
+
+            new Spaceport()
             {
                 ID = 1,
                 PlanetName = "Tatooine",
-                Name = "Mos Eisley"
+                Name = "Mos Eisley",
+                MaxStarshipLength = 250
             };
 
             List<Parking> testParkings = new()
@@ -98,21 +111,40 @@ namespace SpaceParkTest.Tests
                     ID = 1,
                     Traveller = "Anakin Skywalker",
                     StarShip = "Naboo fighter",
-                    Spaceport = testSpaceport,
+                    Spaceport = testSpaceports[0],
                     StartTime = DateTime.Now.AddSeconds(-10)
                 },
                 new Parking()
                 {
                     ID = 2,
                     Traveller = "Han Solo",
-                    StarShip = "Millenium Falcon",
-                    Spaceport = testSpaceport,
+                    StarShip = "Millennium Falcon",
+                    Spaceport = testSpaceports[0],
                     StartTime = DateTime.Now.AddSeconds(-10)
                 },
             };
 
-            IParkingsRepository testRepo = new TestParkingsRepository(testParkings);
-            var parkingsController = new ParkingsController(null, testRepo, null, null);
+            List<Starship> testShips = new()
+            {
+                new Starship()
+                {
+                    Name = "Naboo fighter",
+                    Length = "11",
+                    URL = ""
+                },
+                new Starship()
+                {
+                    Name = "Millennium Falcon",
+                    Length = "34.37",
+                    URL = ""
+                }
+            };
+
+            IParkingsRepository parkingRepo = new TestParkingsRepository(testParkings);
+            ISpaceportsRepository spaceportRepo = new TestSpaceportsRepository(testSpaceports);
+            IStarshipsRepository starshipsRepo = new TestStarshipsRepository(testShips);
+
+            var parkingsController = new ParkingsController(null, parkingRepo, spaceportRepo, starshipsRepo);
 
             // Act
             var actualParkings = parkingsController.GetParking(2).Result.Value;
@@ -131,7 +163,8 @@ namespace SpaceParkTest.Tests
                 {
                     ID = 1,
                     PlanetName = "Tatooine",
-                    Name = "Mos Eisley"
+                    Name = "Mos Eisley",
+                    MaxStarshipLength = 250
                 }
             };
 
@@ -139,12 +172,30 @@ namespace SpaceParkTest.Tests
             {
                 Traveller = "Anakin Skywalker",
                 Starship = "Naboo fighter",
+
                 SpaceportId = spacePorts[0].ID
+            };
+
+            List<Starship> testShips = new()
+            {
+                new Starship()
+                {
+                    Name = "Naboo fighter",
+                    Length = "11",
+                    URL = ""
+                },
+                new Starship()
+                {
+                    Name = "Millennium Falcon",
+                    Length = "34.37",
+                    URL = ""
+                }
             };
 
             TestParkingsRepository testParkingsrepo = new(null);
             ISpaceportsRepository testSpaceportsRepo = new TestSpaceportsRepository(spacePorts);
-            var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo, null);
+            IStarshipsRepository starshipsRepo = new TestStarshipsRepository(testShips);
+            var parkingsController = new ParkingsController(null, testParkingsrepo, testSpaceportsRepo, starshipsRepo);
 
             // Act
             //var newParkings = parkingsController.PostParking(postParking).Result.Value;
