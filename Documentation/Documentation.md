@@ -20,7 +20,7 @@
 # Documentation
 
 ## Table of contents
-- [The assignment's specification](#The-assignment-(Specification))
+- [The assignment's specification](#The-assignment-Specification)
 - [Process](#Process)
 - [Code Structure](#Code-Structure)
   - [SpaceParkAPI](#SpaceParkAPI)
