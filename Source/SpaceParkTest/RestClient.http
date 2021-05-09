@@ -1,0 +1,63 @@
+##############################
+########## Parkings ##########
+##############################
+
+###Get all parkings
+GET https://localhost:44360/api/Parkings
+apikey: apikey1234_visitor
+
+###Add new parking. 
+POST https://localhost:44360/api/Parkings
+Content-Type: application/json
+apikey: apikey1234_visitor
+
+{
+    "Traveller":"Luke Skywalker",
+    "Starship":"X-wing",
+    "SpaceportId":2
+}
+
+###Get all previous parkings for specified traveller
+GET https://localhost:44360​/api​/Parkings​/Ended?traveller=Luke Skywalker
+apikey: apikey1234_visitor
+
+###Gets currently active parking for specified traveller
+GET https://localhost:44360/api/Parkings/Active?traveller=Luke Skywalker
+apikey: apikey1234_visitor
+
+###Get parking based on ID
+GET https://localhost:44360/api/Parkings/1
+apikey: apikey1234_visitor
+
+###Ends parking for specified traveller.
+PATCH https://localhost:44360/api/Parkings/Checkout?traveller=Luke Skywalker
+Content-Type: application/json
+apikey: apikey1234_visitor
+
+{
+}
+
+############################
+########## People ##########
+############################
+
+###Returns all travellers allowed to park in any Spaceport.
+GET https://localhost:44360​/api/People/All
+apikey: apikey1234_visitor
+
+###
+
+GET https://localhost:44360/api/People/All
+apikey: apikey1234_visitor
+
+###Returns all travellers allowed to park in any Spaceport.
+
+GET https://localhost:44360/api/People/All
+apikey: apikey1234_visitor
+
+################################
+########## Spaceports ##########
+################################
+
+
+

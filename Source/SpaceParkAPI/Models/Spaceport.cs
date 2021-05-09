@@ -15,6 +15,6 @@ namespace SpaceParkAPI.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public int MaxStarshipLength { get; set; }
+        public double MaxStarshipLength { get; set; }
     }
 }

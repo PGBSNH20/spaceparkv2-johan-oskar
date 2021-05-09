@@ -52,8 +52,9 @@ namespace SpaceParkAPI.Controllers
         {
             var spaceport = new Spaceport
             {
-                PlanetName = "",
+                PlanetName = postSpaceport.PlanetName,
                 Name = postSpaceport.Name,
+                MaxStarshipLength = postSpaceport.MaxStarshipLength
             };
 
             await _spaceportRepository.AddSpaceport(_context, spaceport);

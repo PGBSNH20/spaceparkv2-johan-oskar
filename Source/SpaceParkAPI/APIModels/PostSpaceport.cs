@@ -10,5 +10,7 @@ namespace SpaceParkAPI.APIModels
     {
         [Required]
         public string Name { get; set; }
+        public string PlanetName { get; set; }
+        public double MaxStarshipLength { get; set; }
     }
 }
