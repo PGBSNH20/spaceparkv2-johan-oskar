@@ -1,23 +1,25 @@
 <pre style="font-family:monospace;line-height: 1.2;white-space: pre;">
- _____   _   _   ____        __________________       ____         _______   _________ 
-|_   _| | |_| | |  __|      /                  \     /    \       /       | |         |
-  | |   |  _  | |  __|     /    ____     ___    |   /      \     /    ____| |    _____|
-  |_|   |_| |_| |____|     \    \   |   |___|   |  /   /\   \   /    /      |   |_____ 
-                            \    \  |           | /   /__\   \ |    |       |    _____|
-                       ______|    | |    ______/ /            \ \    \____  |   |_____ 
-                      |          /  |   |       /    ______    \ \        | |         |
-                      |_________/   |___|      /____/      \____\ \_______| |_________|
-                       __________       ____         ___________          ____    _____
-                      |          \     /    \       |           \        |    |  /    /
-                      |    ___    |   /      \      |     ___    |       |    | /    /
-                      |   |___|   |  /   /\   \     |    |___|   |       |    |/    /
-                      |           | /   /__\   \    |          _/        |         |        _     ____   _ 
-                      |    ______/ /            \   |    |\    \_______  |    |\    \      / \   |    | | |
-                      |   |       /    ______    \  |    | \           | |    | \    \    / _ \  |  __| | |
-                      |___|      /____/      \____\ |____|  \__________| |____|  \____\  /_/ \_\ |_|    |_|
+ _____   _   _   ____     __________________       ____         _______   _________ 
+|_   _| | |_| | |  __|   /                  \     /    \       /       | |         |
+  | |   |  _  | |  __|  /    ____     ___    |   /      \     /    ____| |    _____|
+  |_|   |_| |_| |____|  \    \   |   |___|   |  /   /\   \   /    /      |   |_____ 
+                         \    \  |           | /   /__\   \ |    |       |    _____|
+                    ______|    | |    ______/ /            \ \    \____  |   |_____ 
+                   |          /  |   |       /    ______    \ \        | |         |
+                   |_________/   |___|      /____/      \____\ \_______| |_________|
+                    __________       ____         ___________          ____    _____
+                   |          \     /    \       |           \        |    |  /    /
+                   |    ___    |   /      \      |     ___    |       |    | /    /
+                   |   |___|   |  /   /\   \     |    |___|   |       |    |/    /
+                   |           | /   /__\   \    |          _/        |         |        _     ____   _ 
+                   |    ______/ /            \   |    |\    \_______  |    |\    \      / \   |    | | |
+                   |   |       /    ______    \  |    | \           | |    | \    \    / _ \  |  __| | |
+                   |___|      /____/      \____\ |____|  \__________| |____|  \____\  /_/ \_\ |_|    |_|
 </pre>
 
 # Documentation
+
+This is the first project in the course "Webbutveckling Backend" in the ".NET Utvecklare" (2020-2022) programme at Teknikhögskolan.
 
 ## Table of contents
 - [The assignment's specification](#The-assignment-Specification)
@@ -31,25 +33,35 @@
 - [](#)
 
 ## The assignment (Specification)
-[Go to top of document](#Documentation)
+##### [Go to top of document](#Documentation)
+
+### [See the repository's main README.md](../README.md).
 
 ## Process
-[Go to top of document](#Documentation)
+##### [Go to top of document](#Documentation)
 
-We began by discussing 
+We decided to use the pair programming technique since we wanted to develop the project together.
+We used Microsoft Teams and Github to facilitate this.
+Some of the other tools we used were:
+- Visual Studio and Visual Studio Code
+- REST Client (an extension for VS Code): to send REST API requets to our api (used to manually test our API).
+- [https://app.diagrams.net](https://app.diagrams.net): for our flow chart.
+
+We began by creating some basic [User Stories](UserStories.md) and by designing [the API](APIDesign.md).
+Using this we could implement some the `Parking` and `Spaceport` models and the `API Controller` for the former.
+
+
 
 ## Code structure
-[Go to top of document](#Documentation)
+##### [Go to top of document](#Documentation)
 
 ### **SpaceParkConsole**
 ```csharp
 throw new NotImplementedException();
 ```
 
----
-
 ### SpaceParkAPI
-[Go to top of document](#Documentation)
+##### [Go to top of document](#Documentation)
 
 - #### _Properties/_
     - #### launchSettings.json
@@ -103,9 +115,12 @@ throw new NotImplementedException();
         ```csharp
         throw new NotImplementedException();
         ```
+    - #### `class ApiKeyMiddleware` (ApiKeyMiddleware.cs)
+        This `Middleware` 
 
 - #### _Migrations/_
     > Entity Framework Core migrations
+
 - #### _Models/_
     > This folder contains the definition for our data entities and the database context as used by Entity Framework.
     - #### `class Parking` (Parking.cs)
@@ -114,6 +129,7 @@ throw new NotImplementedException();
         > This defines the `Spaceport` entity.
     - #### `class SpaceParkContext` (SpaceParkContext.cs)
         > This defines the database structure, connection and any configurations.
+
 - #### _Repositories/_
     - #### `interface IParkingsRepository` (IParkingsRepository.cs)
         > This defines the repository for the `Parkings` entity.
@@ -123,9 +139,11 @@ throw new NotImplementedException();
         > This defines the repository for the `Parkings` entity which contains all of its database queries.
     - #### `class SpaceportsRepository` (SpaceportsRepository.cs)
         > This defines the repository for the `Spaceports` entity which contains all of its database queries.
+
 - #### _Swagger/_
     - #### `HeaderFilter` (HeaderFilter.cs)
         > This adds an operation filter to swagger which defines the requirement of an API key in the header on API requests when using Swagger.
+
 - #### _swapi/_
     > This folder contains all logic which deals with the Star Wars API (`swapi`).
     - #### _Controllers/_
@@ -166,48 +184,66 @@ throw new NotImplementedException();
                 ````
                 http://swapi.dev/api/people/?search=[name]
                 ````
+
 - #### appsettings.json
     Contains:
     - The database connection string
     - The API-keys for normal users `"Visitor"` and admins `"Admin"`
+
 - #### Dockerfile
 - #### Program.cs
 - #### SpaceParkAPI.xml
 - #### `class Startup` (Startup.cs)
-    > Here we register the services (dependencies) we use in our controllers (via injection in the constructor).
+    In this class we:
+    - Register services (dependencies) we use in our controllers (via injection in an `API Controllers`constructor).
+    - Configure Swagger.
+    - Add all middleware.
+    
     Of note:
-    - The following tells Swagger to use the Xml comments from our code (Swagger reads the file `SpaceParkAPI.xml` which is generated when building the project)
-        ```csharp
-        c.IncludeXmlComments(Path.Combine(System.AppContext.BaseDirectory, "SpaceParkAPI.xml"));
-        c.OperationFilter<HeaderFilter>();
-        ```
-    - Dependency injection: The following code registers our services which we can later request (e.g. in our API Controllers).
-        ```csharp
-        services.AddSingleton<IParkingsRepository, ParkingsRepository>();
-        services.AddSingleton<ISpaceportsRepository, SpaceportsRepository>();
-        services.AddSingleton<IPeopleRepository, PeopleRepository>();
-        services.AddSingleton<IStarshipsRepository, StarshipsRepository>();
-        ```
+    - #### `ConfigureServices()`
+        - Register the database context:
 
----
+            The following imports the connection string from [appsettings.json](appsettings.json) and registers our database context `SpaceParkContext`:
+            ```csharp
+            services.AddDbContext<SpaceParkContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            ```
+        - The following tells Swagger to use the Xml comments from our code (Swagger reads the file `SpaceParkAPI.xml` which is generated when building the project)
+            ```csharp
+            c.IncludeXmlComments(Path.Combine(System.AppContext.BaseDirectory, "SpaceParkAPI.xml"));
+            c.OperationFilter<HeaderFilter>();
+            ```
+        - Dependency injection: The following code registers our services which we can later request (e.g. in our API Controllers).
+            ```csharp
+            services.AddSingleton<IParkingsRepository, ParkingsRepository>();
+            services.AddSingleton<ISpaceportsRepository, SpaceportsRepository>();
+            services.AddSingleton<IPeopleRepository, PeopleRepository>();
+            services.AddSingleton<IStarshipsRepository, StarshipsRepository>();
+            ```
+    - #### `Configure()`
+        The following adds our `ApiKeyMiddleware` ([click here for details](#class-ApiKeyMiddleware-ApiKeyMiddleware.cs)):
+        ```csharp
+        app.UseMiddleware<ApiKeyMiddleware>();
+        ```
 
 ### SpaceParkTest
-[Go to top of document](#Documentation)
+##### [Go to top of document](#Documentation)
 
 > todo
 
 ### Flow Chart
-[Go to top of document](#Documentation)
+##### [Go to top of document](#Documentation)
 
 ![](Project1_SpacePark2_FlowChart.svg)
 
 ## API documentation
-[Go to top of document](#Documentation)
+##### [Go to top of document](#Documentation)
 
 > [go to "readme.md"](readme.md)
 
 ## Sources & Credits
-[Go to top of document](#Documentation)
+##### [Go to top of document](#Documentation)
 
 - [Jakob Kallin](https://jakobkallin.com/) creator of `ShowMenu()` (used in `SpaceParkConsole`)
+- [REST Client (extension for Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+- [https://app.diagrams.net](https://app.diagrams.net)
 
