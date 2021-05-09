@@ -22,9 +22,10 @@
 ## Table of contents
 - [The assignment's specification](#The-assignment's-specification)
 - [Process](#Process)
-- [Code structure](#Code-structure)
+- [Code Structure](#Code-Structure)
   - [SpaceParkAPI](#SpaceParkAPI)
   - [SpaceParkTest](#SpaceParkTest)
+- [Flow Chart](#Flow-Chart)
 - [API documentation](#API-documentation)
 - [Sources & Credits](#Sources-&-Credits)
 - [](#)
@@ -195,10 +196,13 @@ throw new NotImplementedException();
 
 > todo
 
+### Flow Chart
+![](Project1_SpacePark2_FlowChart.svg)
+
 ## API documentation
 [Go to top of document](#Documentation)
 
-> todo
+> [go to "readme.md"](readme.md)
 
 ## Sources & Credits
 [Go to top of document](#Documentation)
