@@ -151,7 +151,7 @@ namespace SpaceParkAPI.Controllers
             return CreatedAtAction(nameof(GetParking), new { id = newParking.ID }, newParking);
         }
 
-        // PATCH: api/Parkings/5
+        // PATCH: api/Parkings/Checkout?traveller=Luke Skywalker
         [HttpPatch("[action]")]
         [ActionName("Checkout")]
         public async Task<ActionResult<Parking>> EndParking([FromQuery] string traveller)
