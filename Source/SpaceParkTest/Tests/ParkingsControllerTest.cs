@@ -96,14 +96,6 @@ namespace SpaceParkTest.Tests
                 }
             };
 
-            new Spaceport()
-            {
-                ID = 1,
-                PlanetName = "Tatooine",
-                Name = "Mos Eisley",
-                MaxStarshipLength = 250
-            };
-
             List<Parking> testParkings = new()
             {
                 new Parking()
