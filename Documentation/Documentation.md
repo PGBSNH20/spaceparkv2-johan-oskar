@@ -1,4 +1,4 @@
-<pre style="font-family:monospace;line-height: 1.2;white-space: pre;margin:0 auto;display:inline-block;">
+<pre style="font-family:monospace;line-height: 1.2;white-space: pre;">
  _____   _   _   ____        __________________       ____         _______   _________ 
 |_   _| | |_| | |  __|      /                  \     /    \       /       | |         |
   | |   |  _  | |  __|     /    ____     ___    |   /      \     /    ____| |    _____|
@@ -16,9 +16,6 @@
                       |   |       /    ______    \  |    | \           | |    | \    \    / _ \  |  __| | |
                       |___|      /____/      \____\ |____|  \__________| |____|  \____\  /_/ \_\ |_|    |_|
 </pre>
-
-<br>
-<br>
 
 # Documentation
 
