@@ -1,12 +1,8 @@
-# SpacePark API Documentation
+# How to use SpacePark API
+All data is returned as JSON format.
 
-
-## How to use the API
-Data is returned as JSON.
-<br/><br/>
-
-### PARKINGS
-<br/><br/>
+## PARKINGS
+<br/>
 
 **GET** /api/Parkings  
 Get all parking rows/entities from the database.  
@@ -15,7 +11,7 @@ Example (Rest Client):
 GET https://localhost:44360/api/Parkings
 apikey: apikey1234_visitor
 ```
-<br/><br/>
+<br/>
 
 **POST** /api/Parkings  
 Adds new parking to database. Checks so that characters is allowed to park and checks Starship length against Starports max length. Parking start time is added automatically.  
@@ -31,7 +27,7 @@ apikey: apikey1234_visitor
     "SpaceportId": int
 }
 ```
-<br/><br/>
+<br/>
 
 **GET** ​/api​/Parkings​/Ended  
 Query parameter: traveller (string)  
@@ -41,7 +37,7 @@ Example (Rest Client):
 GET https://localhost:44360​/api​/Parkings​/Ended?traveller=Luke Skywalker
 apikey: apikey1234_visitor
 ```
-<br/><br/>
+<br/>
 
 **GET** ​/api​/Parkings​/Active  
 Query parameter: traveller (string)  
@@ -51,17 +47,17 @@ Example (Rest Client):
 GET https://localhost:44360​/api​/Parkings​/Active?traveller=Luke Skywalker
 apikey: apikey1234_visitor
 ```
-<br/><br/>
+<br/>
 
 **GET** /api/Parkings/{id}  
-Path parameter: id (int)
+Path parameter: id (int)  
 Find and return a {parking} entity with the specified {id} from the database. If no entity can be found, then {null} is returned.  
 Example (Rest Client):
 ```
 GET https://localhost:44360/api/Parkings/1
 apikey: apikey1234_visitor
 ```
-<br/><br/>
+<br/>
 
 **PATCH** /api/Parkings/Checkout  
 Query parameter: traveller (string)  
@@ -75,10 +71,10 @@ apikey: apikey1234_visitor
 {
 }
 ```
-<br/><br/>
+<br/>
 
-### PEOPLE
-<br/><br/>
+## PEOPLE
+<br/>
 
 **GET** /api/People/All  
 Returns all travellers allowed to park in any Spaceport.  
@@ -87,7 +83,7 @@ Example (Rest Client):
 GET https://localhost:44360​/api/People/All
 apikey: apikey1234_visitor
 ```
-<br/><br/>
+<br/>
 
 **GET** /api/People  
 Query parameter: starship (string)  
@@ -97,10 +93,10 @@ Example (Rest Client):
 GET https://localhost:44360​/api/People?name=Darth Vader
 apikey: apikey1234_visitor
 ```
-<br/><br/>
+<br/>
 
-### SPACEPORTS
-<br/><br/>
+## SPACEPORTS
+<br/>
 
 **GET** /api/Spaceports  
 Returns all Spaceports.  
@@ -109,10 +105,10 @@ Example (Rest Client):
 GET https://localhost:44360​/api/Spaceports
 apikey: apikey1234_visitor
 ```
-<br/><br/>
+<br/>
 
 **POST** /api/Spaceports  
-Creates new Spceport. New spaceport name (string) need to be provided in the request body.  
+Creates new Spceport. New spaceport name (string) needs to be provided in the request body.  
 Administrator API-Key is required.  
 Example (Rest Client):
 ```
@@ -121,34 +117,36 @@ Content-Type: application/json
 apikey: apikey1234_admin
 
 {
-    "Name":"Mos Eisley"
+    "PlanetName":"Tatooine",
+    "Name":"Mos Eisley",
+    "MaxStarshipLength":250
 }
 ```
-<br/><br/>
+<br/>
 
-**GET** /api/Spaceports/{id}
-Path parameter: id (int)
+**GET** /api/Spaceports/{id}  
+Path parameter: id (int)  
 Returns a single spaceport based on supplied id.  
 Example (Rest Client):
 ```
 GET https://localhost:44360​/api/Spaceports/1
 apikey: apikey1234_visitor
 ```
-<br/><br/>
+<br/>
 
-### STARSHIPS
-<br/><br/>
+## STARSHIPS
+<br/>
 
-**GET** /api/Starships/All
+**GET** /api/Starships/All  
 Returns all starships assocciated with visitors allowed to park in any Starport.  
 Example (Rest Client):
 ```
 GET https://localhost:44360​/api/Starships/All
 apikey: apikey1234_visitor
 ```
-<br/><br/>
+<br/>
 
-**GET** /api/Starships
+**GET** /api/Starships  
 Query parameter: starship (string)  
 Returns a single starships based on supplied id.  
 Example (Rest Client):
