@@ -20,7 +20,7 @@
 # Documentation
 
 ## Table of contents
-- [The assignment's specification](#The-assignment's-specification)
+- [The assignment's specification](#The-assignment-(Specification))
 - [Process](#Process)
 - [Code Structure](#Code-Structure)
   - [SpaceParkAPI](#SpaceParkAPI)
@@ -30,7 +30,7 @@
 - [Sources & Credits](#Sources-&-Credits)
 - [](#)
 
-## The assignment's specification
+## The assignment (Specification)
 [Go to top of document](#Documentation)
 
 ## Process
@@ -197,6 +197,8 @@ throw new NotImplementedException();
 > todo
 
 ### Flow Chart
+[Go to top of document](#Documentation)
+
 ![](Project1_SpacePark2_FlowChart.svg)
 
 ## API documentation
