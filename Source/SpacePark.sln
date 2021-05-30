@@ -3,7 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceParkAPI", "SpaceParkAPI\SpaceParkAPI.csproj", "{C4DA5626-1168-4355-8D2B-8222510CCAA8}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{56B2562B-831B-4C39-BF7D-38D6FF1BA104}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceParkTest", "SpaceParkTest\SpaceParkTest.csproj", "{FAF7A7AA-0A2C-4CD6-B07C-44939ADF3A93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceParkConsole", "SpaceParkConsole\SpaceParkConsole.csproj", "{14172F25-A95D-441E-8E4B-2D1D781AE348}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4DA5626-1168-4355-8D2B-8222510CCAA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4DA5626-1168-4355-8D2B-8222510CCAA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4DA5626-1168-4355-8D2B-8222510CCAA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4DA5626-1168-4355-8D2B-8222510CCAA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56B2562B-831B-4C39-BF7D-38D6FF1BA104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56B2562B-831B-4C39-BF7D-38D6FF1BA104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56B2562B-831B-4C39-BF7D-38D6FF1BA104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56B2562B-831B-4C39-BF7D-38D6FF1BA104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF7A7AA-0A2C-4CD6-B07C-44939ADF3A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF7A7AA-0A2C-4CD6-B07C-44939ADF3A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF7A7AA-0A2C-4CD6-B07C-44939ADF3A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF7A7AA-0A2C-4CD6-B07C-44939ADF3A93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14172F25-A95D-441E-8E4B-2D1D781AE348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14172F25-A95D-441E-8E4B-2D1D781AE348}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14172F25-A95D-441E-8E4B-2D1D781AE348}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14172F25-A95D-441E-8E4B-2D1D781AE348}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

@@ -1,0 +1,86 @@
+##############################
+########## Parkings ##########
+##############################
+ 
+### Get all parkings
+GET https://localhost:44360/api/Parkings
+apikey: apikey1234_visitor
+ 
+### Add new parking. 
+POST https://localhost:44360/api/Parkings
+Content-Type: application/json
+apikey: apikey1234_visitor
+ 
+{
+    "Traveller":"Luke Skywalker",
+    "Starship":"X-wing",
+    "SpaceportId":1
+}
+ 
+### Get all previous parkings for specified traveller
+GET https://localhost:44360/api/Parkings/Ended?traveller=Luke Skywalker
+apikey: apikey1234_visitor
+ 
+### Gets currently active parking for specified traveller
+GET https://localhost:44360/api/Parkings/Active?traveller=Luke Skywalker
+apikey: apikey1234_visitor
+ 
+### Get parking based on ID
+GET https://localhost:44360/api/Parkings/1
+apikey: apikey1234_visitor
+ 
+### Ends parking for specified traveller.
+PATCH https://localhost:44360/api/Parkings/Checkout?traveller=Luke Skywalker
+Content-Type: application/json
+apikey: apikey1234_visitor
+ 
+{
+}
+ 
+############################
+########## People ##########
+############################
+ 
+### Returns all travellers allowed to park in any Spaceport.
+GET https://localhost:44360/api/People/All
+apikey: apikey1234_visitor
+ 
+### Returns traveller by name.  
+GET https://localhost:44360/api/People?name=Darth Vader
+apikey: apikey1234_visitor
+
+################################
+########## Spaceports ##########
+################################
+ 
+### Returns all spaceports in the database.
+GET https://localhost:44360/api/Spaceports
+apikey: apikey1234_visitor
+ 
+### Creates new spaceport
+POST https://localhost:44360/api/Spaceports
+Content-Type: application/json
+apikey: apikey1234_admin
+ 
+{
+    "PlanetName":"Tatooine",
+    "Name":"Mos Eisley",
+    "MaxStarshipLength":250
+}
+ 
+### Get spaceport by ID
+GET https://localhost:44360/api/Spaceports/1
+apikey: apikey1234_visitor
+ 
+###############################
+########## Starships ##########
+###############################
+
+### Gets all starships assocciated with
+### visitors allowed to park in any Starport.
+GET https://localhost:44360/api/Starships/All
+apikey: apikey1234_visitor
+ 
+### Get Starship by name
+GET https://localhost:44360/api/Starships?name=Millennium Falcon
+apikey: apikey1234_visitor
